@@ -1,0 +1,225 @@
+% mnras_template.tex
+%
+% LaTeX template for creating an MNRAS paper
+%
+% v3.0 released 14 May 2015
+% (version numbers match those of mnras.cls)
+%
+% Copyright (C) Royal Astronomical Society 2015
+% Authors:
+% Keith T. Smith (Royal Astronomical Society)
+
+% Change log
+%
+% v3.0 May 2015
+%    Renamed to match the new package name
+%    Version number matches mnras.cls
+%    A few minor tweaks to wording
+% v1.0 September 2013
+%    Beta testing only - never publicly released
+%    First version: a simple (ish) template for creating an MNRAS paper
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Basic setup. Most papers should leave these options alone.
+\documentclass[fleqn,usenatbib,letters]{mnras}%added "letters", a4paper is default
+
+% MNRAS is set in Times font. If you don't have this installed (most LaTeX
+% installations will be fine) or prefer the old Computer Modern fonts, comment
+% out the following line
+%\usepackage{newtxtext,newtxmath}
+% Depending on your LaTeX fonts installation, you might get better results with one of these:
+\usepackage{mathptmx}
+%\usepackage{txfonts}
+
+% Use vector fonts, so it zooms properly in on-screen viewing software
+% Don't change these lines unless you know what you are doing
+\usepackage[T1]{fontenc}
+\usepackage{ae,aecompl}
+
+
+%%%%% AUTHORS - PLACE YOUR OWN PACKAGES HERE %%%%%
+
+% Only include extra packages if you really need them. Common packages are:
+\usepackage{graphicx}	% Including figure files
+\usepackage{amsmath}	% Advanced maths commands
+\usepackage{amssymb}	% Extra maths symbols
+\usepackage{cases}  %define a step function
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%% AUTHORS - PLACE YOUR OWN COMMANDS HERE %%%%%
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%% TITLE PAGE %%%%%%%%%%%%%%%%%%%
+
+% Title of the paper, and the short title which is used in the headers.
+% Keep the title short and informative.
+\title[]{Flaring Star-Planet Interactions in AU Mic TESS Observations}
+
+% The list of authors, and the short list which is used in the headers.
+% If you need two or more lines of authors, add an extra line using \newauthor
+\author[E. Ilin et al.]{
+E. Ilin$^{1,2}$,\thanks{E-mail: eilin@aip.de}
+K. Poppenhaeger$^{1,2}$,
+\\
+% List of institutions
+$^{1}$Leibniz-Institute for Astrophysics Potsdam (AIP), An der Sternwarte 16, 14482 Potsdam, Germany\\
+$^{2}$Institute for Physics and Astronomy, University of Potsdam, Karl-Liebknecht-Str. 24/25, 14476 Potsdam, Germany
+}
+
+% These dates will be filled out by the publisher
+\date{Accepted XXX. Received YYY; in original form ZZZ}
+
+% Enter the current year, for the copyright statements etc.
+\pubyear{2020}
+
+% Don't change these lines
+\begin{document}
+\label{firstpage}
+\pagerange{\pageref{firstpage}--\pageref{lastpage}}
+\maketitle
+
+% Abstract of the paper
+\begin{abstract}
+...
+\end{abstract}
+
+% Select between one and six entries from the list of approved keywords.
+% Don't make up new ones.
+\begin{keywords}
+keyword1 -- keyword2 -- keyword3
+\end{keywords}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%-------------------------------------------------------------------
+
+\section{Introduction}
+\section{Data}
+\subsection{AU Mic}
+Rotation period $4.862\pm 0.032$ d~\citep{martioli2021}, $4.863\pm 0.001$ d~\citep{plavchan2020}
+
+AU Mic is a member of the $\beta$ Pic young moving group, which is $16-29$ Myr old~\citep{malo2014,binks2014,mamajek2014,bell2015,binks2016,shkolnik2017,miretroig2020}. Based on its lithium abundance, AU Mic could be a few Myr older than the average group member~\citep{malo2014}. 
+
+%Spectral type tends to agree on M1, but effective temperature is lower in Plavchan et al. (2009)
+AU Mic shows strong differential rotation (XXXX).
+
+The TESS photometry of AU Mic shows that it is actively flaring~\citep{martioli2021}
+\subsection{AU Mic b}
+AU Mic b is a Neptune-sized planet ($R_p = 4.3R_\Earth$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021}.
+
+\subsection{TESS photometry}
+The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27 days$ in each observing Sector. About $200\,000$ stars have been observed in 2-min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20-s cadence. 
+% 20000 per sector does not add up, because of stars observed in multiple sectors, the 20000 and 1000 figures can be found here: https://tess.mit.edu/observations/target-lists/
+% extended TESS mission https://heasarc.gsfc.nasa.gov/docs/tess/extended.html
+
+
+\section{Methods}
+\subsection{Light curve de-trending and flare finding}
+%Transit masking
+Stellar light curves are time series of flux measurements that vary due to both astrophysical and instrumental effects. Flares are only one of the phenomena that can be detected in them. To quickly identify flare signatures with the lowest false positive and false negative rates, we applied several steps to remove all but the variations caused by flares.
+
+Before removing these trends, we masked the transits using the information about transit mid-time, transit duration, and, if multiple transits were detected, orbital period obtained from the PSCP and TT catalogs. Except for the superactive stars AU Mic, XXXX, XXXX, and XXXX we did not search for flares inside transits. %We may want to search the transits of stars that have flares in the first place.
+%    - if we have reason to think that we will find flares in transits of stars that are otherwise inactive
+
+% custom de-trending
+The presented method is inspired by the iterative approach in~\citet{davenport2016} who searched the entire Kepler catalog for flares, but does not using rolling median filters except for the noise estimate in the final de-trended light curve. 
+
+The masked light curves were de-trended in three steps, each of which removes variability on decreasing time scales while preserving the flare signal. Typical flare times rarely exceed are between a few minutes to a few hours, and rarely exceed 1 day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability, which can be of similar time scales~(see Fig.~\ref{fig:illustrate_detrend}). 
+
+First, we fit and subtract a third order spline function that goes through the start and end of any light curve portion that has no gaps longer than 2h, and through an averaged flux point every 30h inbetween. This step removes long term trends as well as stellar variability on time scales of 5 days and above. If the light curve portion is shorter than 5 days, this step is skipped. 
+
+Second, we iteratively remove strong periodic signal on time scales between 2 h and 5 d from the light curve. Each iteration first masks outlier points using a padded sigma-clipping procedure. For this step, single outliers above 3.5 sigma are masked as pure outliers, and series of $n>1$ data points above 3.5 sigma are masked as flare candidates or other extended outliers and padded with rounded $\sqrt{n}$ masked points before the outliers to capture slow rise phases, and rounded $2\sqrt{n}$ after the series to capture a potential extended decay phase that flares often display. Then we calculate a Lomb-Scargle periodogram for the light curve, and performs a least-square fit with a cosine function using the dominant frequency in the periodogram as a starting point. The cosine fit is then subtracted from the light curve. We iterate five times or until the dominant peak's signal-to-noise ratio drops below 1. 
+
+As a third step, we again apply the padded outlier clipping, and smooth any remaining variability that is not sinusoidal, first with a 6h and then with a 3h window 3rd order Savitzky-Golay~\citep{savitzky1964} filter implemented in \texttt{scipy} as \texttt{signal.savgol\_filter}.
+
+These three steps can sometimes overfit the very edges of the light curve, leaving small exponential drops or rises in the flux that affect the quiescent flux level calculation and/or produce false positive flare detections. If the last and/or the first data point are $1\sigma$ outliers above/below standard deviation of the de-trended light cruve, we fit an exponential growth or decay functions to these fringes.
+
+Finally we estimate the noise in the de-trended light curve using a two rolling median after padding outliers in the aforementioned way, but now above 2.5 sigma, and interpolating between them to arrive at a noise in the flare regions that is informed by the noise levels in a similar light curve portion.
+
+The detrended light curves are then searched for flare candidates. For this, we first find an iterative median, and then apply davenport2014 method that requires 3 consecutive positive outliers 3 sigma above median for a candidate detection, and then adds subsequent data points until one of them falls below a 2 sigma above median threshold in order not to cut off detectable parts of the flare decay phase. This series of data points is then flagged as flare. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration (ED) with uncertainty.
+
+\textbf{Define ED and unertainty on ED here if necessary.} 
+
+We tested our de-trending and flare-finding procedure on a range of both real and synthetic light curves that covers all typically observed variability signal patterns, and that contains flare signatures between barely exceeding the detection threshold to the largest flares we typically observe. Since we confirmed all flare candidates by eye, we can note its emprical shortcomings, and workarounds for those. 
+
+In extremely active stars like AU Mic, that spend a significant fraction of the time in flaring state, we can recover more flares by decreasing the sigma clipping threshold in the noise estimate to 1.5 sigma instead of 2.5. 
+
+Events like agrabrighetenings and fireflies that occur when light is reflected off of a passing particle into the detector can cause false positive detections that sometimes look similar to flares. These can be identified as occurring simultaneously in multiple light curves.
+
+The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
+\begin{figure*}
+\includegraphics[width=\hsize]{figures/illustrate_flares.png} 
+\caption{Subset of flares detected in the TESS light curve of TIC 299798795, Sector 13.  }
+\label{fig:illustrate_detrend}
+\end{figure*}
+
+\begin{figure}
+\includegraphics[width=\hsize]{figures/sigma_clipping.png} 
+\caption{Padded sigma clipping technique applied to 4-data point flare.}
+\label{fig:illustrate_clipping}
+\end{figure}
+% Noise estimat
+
+%False positives are called fireflies\footnote{\url{https://archive.stsci.edu/files/live/sites/mast/files/home/missions-and-data/active-missions/tess/_documents/TESS_Instrument_Handbook_v0.1.pdf}}, for instance in Sector 27.
+\subsection{Flare characterization}
+\subsection{Orbital Flare De-clustering or Simply: Front vs. Back}
+\section{Results}
+\subsection{Star-Planet System Flare Catalog}
+insert table
+\subsection{More Analysis, perhaps in subsamples}
+\section{Discussion}
+\citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in radio 
+\citet{fischer2019} did not find any sign of flaring SPI in TRAPPIST-1 - no 
+
+\section{Summary and Conclusions}
+\section*{Acknowledgements}
+We made use of numpy~\citep{numpy2020} and pandas~\citep{pandas2010,pandas2020software}
+
+This research has made use of the SIMBAD database,
+operated at CDS, Strasbourg, France~\citep{wenger2000}
+
+%This publication makes use of data products from the Two Micron All Sky Survey, which is a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by the National Aeronautics and Space Administration and the National Science Foundation.
+
+%This work has made use of data from the European Space Agency (ESA) mission {\it Gaia} (\url{https://www.cosmos.esa.int/gaia}), processed by the {\it Gaia} Data Processing and Analysis Consortium (DPAC, \url{https://www.cosmos.esa.int/web/gaia/dpac/consortium}). Funding for the DPAC has been provided by national institutions, in particular the institutions participating in the {\it Gaia} Multilateral Agreement.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%% REFERENCES %%%%%%%%%%%%%%%%%%
+
+% The best way to enter references is to use BibTeX:
+
+\bibliographystyle{mnras}
+\bibliography{bibliography}
+
+
+% Alternatively you could enter them by hand, like this:
+% This method is tedious and prone to error if you have lots of references
+%\begin{thebibliography}{99}
+%\bibitem[\protect\citeauthoryear{Author}{2012}]{Author2012}
+%Author A.~N., 2013, Journal of Improbable Astronomy, 1, 1
+%\bibitem[\protect\citeauthoryear{Others}{2013}]{Others2013}
+%Others S., 2012, Journal of Interesting Stuff, 17, 198
+%\end{thebibliography}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%% APPENDICES %%%%%%%%%%%%%%%%%%%%%
+
+%\appendix
+%
+%\section{Some extra material}
+%
+%additional material which would interrupt the flow of the main paper
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% Don't change these lines
+\bsp	% typesetting comment
+\label{lastpage}
+\end{document}
+
+% End of mnras_template.tex
