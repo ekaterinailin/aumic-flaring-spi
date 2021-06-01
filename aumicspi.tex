@@ -56,7 +56,7 @@
 
 % Title of the paper, and the short title which is used in the headers.
 % Keep the title short and informative.
-\title[]{Flaring Star-Planet Interactions in AU Mic TESS Observations}
+\title[]{Testing for Flaring Star-Planet Interactions in AU Mic TESS Observations}
 
 % The list of authors, and the short list which is used in the headers.
 % If you need two or more lines of authors, add an extra line using \newauthor
@@ -83,7 +83,9 @@ $^{2}$Institute for Physics and Astronomy, University of Potsdam, Karl-Liebknech
 
 % Abstract of the paper
 \begin{abstract}
-...
+Magnetically active stars with close-in planets are expected to show signs of magnetic star-planet interaction in form of a modulation of magnetic activity with the orbital phase of the planet. However, the magnitude of this interaction proves difficult to constrain.
+
+In this study we searched the optical light curves of the young, active M1 star AU Mic for signs of flaring SPI with its innermost planet. We find that the flare occurrence rates are consistent with a uniform distribution of flares across the stellar surface with respect to stellar rotation phase. We find marginal deviation with orbital phase, but cannot make firm conclusions since the TESS light curves only cover about 5 orbital periods of AU Mic b. 
 \end{abstract}
 
 % Select between one and six entries from the list of approved keywords.
@@ -97,7 +99,19 @@ keyword1 -- keyword2 -- keyword3
 %-------------------------------------------------------------------
 
 \section{Introduction}
-\section{Data}
+
+Stellar flares are known as electromagnetic explosions in the stellar coronae that are driven by the dynamics of the surface magnetic fields. As such, they are phenomena triggered intrisically by the star. Another class of flares, though phenomenologically the same, are flares triggered by magnetic star-planet interaction (SPI).
+
+In such flares, the energy for the flare is provided by XXXX, and the event itself is triggered by the re-connection of stellar and planetary magnetic field lines. For this to occur, the planet must revolve around the star in close orbit, so that it moves within the stellar Alfven zone for at least a fraction of its orbit. When the planet is within the Alfven zone, the magnetic field and the energy transported along the field lines as particles or waves can fall back on to the star, whereas outside of it i woudl be carried away by the stellar wind. 
+
+\textit{Do we need Prot and Porb to be different actually?}
+
+When re-connection between star and planet occurs, the energy channelled back into the stellar atmosphere can create an activity hot spot (XXXX Halpha? Xray?) trigger a flare. The footpoint of the connecting field line is expected to move with the planetary orbit (but need not neccessarily be the sub-planetary point).
+
+Recently, AU Mic has been shown to be a promising candidate for such magnetic SPI. \citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in the radio regime, where re-.  
+
+
+
 \subsection{AU Mic}
 Rotation period $4.862\pm 0.032$ d~\citep{martioli2021}, $4.863\pm 0.001$ d~\citep{plavchan2020}
 
@@ -106,9 +120,12 @@ AU Mic is a member of the $\beta$ Pic young moving group, which is $16-29$ Myr o
 %Spectral type tends to agree on M1, but effective temperature is lower in Plavchan et al. (2009)
 AU Mic shows strong differential rotation (XXXX).
 
+AU Mic has a strong surface magentic field of several hundred Gauss~\citep{klein2021}.
+
 The TESS photometry of AU Mic shows that it is actively flaring~\citep{martioli2021}
 \subsection{AU Mic b}
-AU Mic b is a Neptune-sized planet ($R_p = 4.3R_\Earth$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021}.
+AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021}.
+\section{Data}
 
 \subsection{TESS photometry}
 The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27 days$ in each observing Sector. About $200\,000$ stars have been observed in 2-min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20-s cadence. 
@@ -152,7 +169,7 @@ Events like agrabrighetenings and fireflies that occur when light is reflected o
 The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/illustrate_flares.png} 
-\caption{Subset of flares detected in the TESS light curve of TIC 299798795, Sector 13.  }
+\caption{Subset of flares detected in the TESS light curve of TIC 299798795, Sector 13.  REPLACE with AU Mic flares.}
 \label{fig:illustrate_detrend}
 \end{figure*}
 
@@ -162,24 +179,51 @@ The pipeline produces many false positive events in light curves that are extrac
 \label{fig:illustrate_clipping}
 \end{figure}
 % Noise estimat
-
 %False positives are called fireflies\footnote{\url{https://archive.stsci.edu/files/live/sites/mast/files/home/missions-and-data/active-missions/tess/_documents/TESS_Instrument_Handbook_v0.1.pdf}}, for instance in Sector 27.
-\subsection{Flare characterization}
-\subsection{Orbital Flare De-clustering or Simply: Front vs. Back}
-\section{Results}
-\subsection{Star-Planet System Flare Catalog}
-insert table
-\subsection{More Analysis, perhaps in subsamples}
-\section{Discussion}
-\citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in radio 
-\citet{fischer2019} did not find any sign of flaring SPI in TRAPPIST-1 - no 
+%\subsection{Flare characterization}
+%\subsection{Orbital Flare De-clustering or Simply: Front vs. Back}
+\section{Flare rate variation with rotational and orbital phases}
+Comparing
+(3.661016949152543, 97, 5.374947279628849, 118)
+\subsection{Kolmogorov-Smirnov test}
+\label{sec:phases}
+\begin{figure*}
+\includegraphics[width=\hsize]{figures/2021_05_AUMic_KStests_meta.png} 
+\caption{Kolmogorov-Smirnov test results. Black, cyan and red crosses indicate $p$-values obtained using the both available light curve, only the 2-min light curve in Sector 1, or only the 20s light curve in Sector 27, respectively. Each subfigure shows the $p$-values obtained either using the full sample of flares, or 50\% of the most energetic, or 50\% of the least energetic flares, respectively. The $1-,\;2-$ and $3-\sigma$ detection levels are indicated as dashed, dotted and dash-dotted horizontal lines. We see no detections at the $3-\sigma$ level with either rotational or orbital modulation.}
+\label{fig:kstests}
+\end{figure*}
+We calculate the deviation from a uniform flare rate distribution with orbital and rotational phase as follows:
+\begin{enumerate}
+\item Take all $F$ flare occurrence times in AU Mic and derive their orbital or rotational phases $x_i$ with $x \in [1,F]$. 
+\item Sort all $x_i$ by phase in ascending order.
+\item For each $x_i$, calculate the number of flares $\hat{n_i}$ we expect to observe in the phase interval $[x_{i-1}, x_i]$, where $x_0\equiv x_F - 1$ (circular boundary condition). Assuming that flare rates are uniformly distributed, we expect to see
+$$\hat{n_i} = \dfrac{T_{obs,i}}{T_{obs, tot}} F$$
+flares, where $T_{obs, tot}$ is the total observing time with TESS, and the observing time $T_{obs,i}$ per phase interval is
+$$T_{obs,i}=\displaystyle\sum_{(x>x_{i-1}\, \land \, x<x_i)} \Delta t,$$
+where $\Delta t$ denotes the TESS observing cadence (2 min or 20 s). The correpsonsing measured number of flares in that phase interval is $n_i=1$ per definition.
+\item Calculate the cumulative frequencies of expected and measured flares as:
+$$f(<i) = \dfrac{1}{F}\displaystyle\sum_{j=i}^{i}n_j= \dfrac{i}{F}$$
+$$\hat{f}(<i) =  \dfrac{1}{F}\displaystyle\sum_{j=0}^{i}\hat{n}_j = \dfrac{1}{T_{obs,tot}}\displaystyle\sum_{j=0}^{i}T_{obs,j}$$
+\item Perform a two-sided one-sample Komolgorov-Smirnov test to check if we can reject the uniform distribution hypothesis.
+\end{enumerate}
 
+The resulting $p$-values are shown in Fig.~\ref{fig:kstests}. Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude (left panel in Fig.~\ref{fig:kstests}). This is expected because XXXX (or not?).
+
+There is a marginal $1-2\sigma$ deviation from a uniform distribution of flares with orbital period, which might be attributed to flaring SPI (right panel in Fig.~\ref{fig:kstests}). However, the TESS data $<50$ days of observations, i.e., covering only abbout 5 orbits of AU Mic b. The same magnitude of deviation would be significant at the $3\sigma$ level, if the observation baseline was XXXX orbital periods, and significant at the $5\sigma$ level after observing XXXX orbital periods. Therefore, longer monitoring of AU Mic in the optical could clarify whether SPI is present or not. In contrast to spot-induced modulation of flare occurrence rates that can only be substantiated for spots that are sufficiently long-lived, orbital modulation can use combined data from many observational campaigns. 
+\subsection{Upper limit on flaring SPI magnitude}
+
+What fraction of flares stem from SPI? How many flares do we need to observe for this fraction to become significant, i.e., so that error on flare frequency << number of "SPI flares"?
+\section{Discussion}
+\subsection{Were our results expected?}
+\citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in radio 
+
+\citet{fischer2019} did not find any sign of flaring SPI in TRAPPIST-1  
 \section{Summary and Conclusions}
+We find an upper limit to the magnitude of flaring SPI in AU Mic, which is theoretically difficult to constrain~\citep{strugarek2019}. As a next step, we will be applying the methods presented here to a larger sample of star-planet systems to increase the total number of orbits covered and to probe the effects of orbital distance, mass (ratio) etc.
 \section*{Acknowledgements}
 We made use of numpy~\citep{numpy2020} and pandas~\citep{pandas2010,pandas2020software}
 
-This research has made use of the SIMBAD database,
-operated at CDS, Strasbourg, France~\citep{wenger2000}
+This research has made use of the SIMBAD database, operated at CDS, Strasbourg, France~\citep{wenger2000}
 
 %This publication makes use of data products from the Two Micron All Sky Survey, which is a joint project of the University of Massachusetts and the Infrared Processing and Analysis Center/California Institute of Technology, funded by the National Aeronautics and Space Administration and the National Science Foundation.
 
