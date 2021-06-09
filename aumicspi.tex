@@ -139,13 +139,13 @@ The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all
 %Transit masking
 Stellar light curves are time series of flux measurements that vary due to both astrophysical and instrumental effects. Flares are only one of the phenomena that can be detected in them. To quickly identify flare signatures with the lowest false positive and false negative rates, we applied several steps to remove all but the variations caused by flares.
 
-Before removing these trends, we masked the transits using the information about transit mid-time, transit duration, and, if multiple transits were detected, orbital period obtained from the PSCP and TT catalogs. Except for the superactive stars AU Mic, XXXX, XXXX, and XXXX we did not search for flares inside transits. %We may want to search the transits of stars that have flares in the first place.
+%Before removing these trends, we masked the transits using the information about transit mid-time, transit duration, and, if multiple transits were detected, orbital period obtained from the PSCP and TT catalogs. Except for the superactive stars AU Mic, XXXX, XXXX, and XXXX we did not search for flares inside transits. %We may want to search the transits of stars that have flares in the first place.
 %    - if we have reason to think that we will find flares in transits of stars that are otherwise inactive
 
 % custom de-trending
 The presented method is inspired by the iterative approach in~\citet{davenport2016} who searched the entire Kepler catalog for flares, but does not using rolling median filters except for the noise estimate in the final de-trended light curve. 
 
-The masked light curves were de-trended in three steps, each of which removes variability on decreasing time scales while preserving the flare signal. Typical flare times rarely exceed are between a few minutes to a few hours, and rarely exceed 1 day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability, which can be of similar time scales~(see Fig.~\ref{fig:illustrate_detrend}). 
+The light curves were de-trended in three steps, each of which removes variability on decreasing time scales while preserving the flare signal. Typical flare times rarely exceed are between a few minutes to a few hours, and rarely exceed 1 day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability, which can be of similar time scales. 
 
 First, we fit and subtract a third order spline function that goes through the start and end of any light curve portion that has no gaps longer than 2h, and through an averaged flux point every 30h inbetween. This step removes long term trends as well as stellar variability on time scales of 5 days and above. If the light curve portion is shorter than 5 days, this step is skipped. 
 
@@ -169,8 +169,8 @@ Events like agrabrighetenings and fireflies that occur when light is reflected o
 
 The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
 \begin{figure*}
-\includegraphics[width=\hsize]{figures/illustrate_flares.png} 
-\caption{Subset of flares detected in the TESS light curve of TIC 299798795, Sector 13.  REPLACE with AU Mic flares.}
+\includegraphics[width=\hsize]{figures/aumic_illustrate_flares.png} 
+\caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1.}
 \label{fig:illustrate_detrend}
 \end{figure*}
 
@@ -187,12 +187,12 @@ The pipeline produces many false positive events in light curves that are extrac
 \subsection{Kolmogorov-Smirnov test}
 \label{sec:phases}
 \begin{figure*}
-\includegraphics[width=\hsize]{figures/2021_06_02_AUMic_KStests_meta.png} 
+\includegraphics[width=\hsize]{figures/2021_06_09_AUMic_KStests_meta.png} 
 \caption{Kolmogorov-Smirnov test results. Black circles, cyan crosses and red diamonds indicate $p$-values obtained using the both available light curve, only the 2-min light curve in Sector 1, or only the 20s light curve in Sector 27, respectively. Each subfigure shows the $p$-values obtained either using the full sample of flares, or 50\% of the most energetic, or 50\% of the least energetic flares, respectively. The $1-,\;2-$ and $3-\sigma$ detection levels are indicated as dashed, dotted and dash-dotted horizontal lines. We see no detections at the $3-\sigma$ level with either rotational or orbital modulation.}
 \label{fig:kstests}
 \end{figure*}
 \begin{figure}
-\includegraphics[width=\hsize]{figures/2021_06_02_AUMic_KS_Test_cumdist_total_Both_Sectors_Orbit.png} 
+\includegraphics[width=\hsize]{figures/2021_06_08_AUMic_KS_Test_cumdist_total_Both_Sectors_Orbit.png} 
 \caption{Cumulative distribution function of flare occurrences as a function of the orbital phase of AU Mic b. Black crosses and black line: The expected distribution with crosses indicating the expected cumulative fraction of observed flares at a given orbital phase. Red circles: Measured cumulative fraction of observed flares as a function of orbital phase. The K-S statistic is defined as the largest absolute vertical distance between the red and the black distribution.}
 \label{fig:cumdist}
 \end{figure}
@@ -218,12 +218,16 @@ We show both distributions for the complete sample of orbital flare phases that 
 
 The resulting $p$-values obtained from the K-S test are shown in Fig.~\ref{fig:kstests}. Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude (left panel in Fig.~\ref{fig:kstests}). This is expected because XXXX (or not?).
 
-There is a marginal $1-2\sigma$ deviation from a uniform distribution of flares with orbital period, which might be attributed to flaring SPI (right panel in Fig.~\ref{fig:kstests}). However, the TESS data $<50$ days of observations, i.e., covering only abbout 5 orbits of AU Mic b. The same magnitude of deviation would be significant at the $3\sigma$ level, if the observation baseline was XXXX orbital periods, and significant at the $5\sigma$ level after observing XXXX orbital periods. Therefore, longer monitoring of AU Mic in the optical could clarify whether SPI is present or not. In contrast to spot-induced modulation of flare occurrence rates that can only be substantiated for spots that are sufficiently long-lived, orbital modulation can use combined data from many observational campaigns. 
-\subsection{Upper limit on flaring SPI magnitude}
-
+The obsersed distribution of flares deviates by $1-2\sigma$ from a uniform distribution of flares with orbital period, which might be attributed to flaring SPI (right panel in Fig.~\ref{fig:kstests}). However, the TESS data comprise $<50$ days of observations, i.e., covering only abbout $5.7$ orbits of AU Mic b. The same magnitude of deviation would be significant at the $99\%$ or  $99.9\%$ confidence level if the observation baseline could be extended by  62.7 d ($7.4\;P_{orb}$), or 117.3 d ($13.9\;P_{orb}$), respectively. Therefore, longer monitoring of AU Mic in the optical could clarify whether SPI is present or not. In contrast to spot-induced modulation of flare occurrence rates that can only be substantiated for spots that are sufficiently long-lived, orbital modulation can use combined data from many observational campaigns. 
+\begin{table}
+\caption{Required observing time in days for a $99\%$ or $99.9\%$ confidence level detection of orbital phase dependent flare rates. Predictions are based on the K-S statistic obtained from the flare rates in Sectors 1, 27, and the combined sample. The required time is shorter for 20 s cadence observations than for 2 min cadence.}
+\centering
+\input{tables/prediction.tex}
+\label{tab:prediction}
+\end{table}
 What fraction of flares stem from SPI? How many flares do we need to observe for this fraction to become significant, i.e., so that error on flare frequency << number of "SPI flares"?
-
-Even if we get a significant deviation, it is not proven that it stems from flaring SPI. But first, we could attempt to more concretely model the flaring behaviour. And second, if we are correct to assume that the spot configuration in AU Mic varies across time, and the flaring regions appear and disappear on sufficiently short time scales, stacking temporally separated observations will average out rotational modulation effects. The spot pattern in Sector 1 is more stable than in Sector 27~\citep{martioli2021}
+\\
+Even if we get a significant deviation, it is not proof that it stems from flaring SPI. However, it would allow us to more concretely model the flaring behaviour. And second, if we are correct to assume that the spot configuration in AU Mic varies across time, and the flaring regions appear and disappear on sufficiently short time scales, stacking temporally separated observations will average out effects of rotational variability. The spot pattern in Sector 1 is more stable than in Sector 27~\citep{martioli2021}
 \section{Discussion}
 \subsection{Were our results expected?}
 No correlation with rotation period, consistent with literature~\citep{doyle2018, doyle2019}
