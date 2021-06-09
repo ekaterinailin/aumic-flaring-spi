@@ -125,29 +125,32 @@ AU Mic has a strong surface magentic field of several hundred Gauss~\citep{klein
 The TESS photometry of AU Mic shows that it is actively flaring~\citep{martioli2021}
 \subsection{AU Mic b}
 AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021}.
-\section{Data}
+%\section{Data}
 
-\subsection{TESS photometry}
-The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27 days$ in each observing Sector. About $200\,000$ stars have been observed in 2-min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20-s cadence. 
+\section{TESS photometry}
+The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27 days$ in each observing Sector. About $200\,000$ stars have been observed in 2-min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20-s cadence.
+
+AU Mic was observed in Sector 1 in 2 min cadence and in Sector 27 in 20 s cadence. 
 % 20000 per sector does not add up, because of stars observed in multiple sectors, the 20000 and 1000 figures can be found here: https://tess.mit.edu/observations/target-lists/
 % extended TESS mission https://heasarc.gsfc.nasa.gov/docs/tess/extended.html
 
 
-\section{Methods}
-\subsection{Light curve de-trending and flare finding}
+%\section{Methods}
+\section{Light curve de-trending and flare finding}
 \label{sec:detrendfind}
+
+\subsection{De-trending}
 %Transit masking
-Stellar light curves are time series of flux measurements that vary due to both astrophysical and instrumental effects. Flares are only one of the phenomena that can be detected in them. To quickly identify flare signatures with the lowest false positive and false negative rates, we applied several steps to remove all but the variations caused by flares.
+Stellar light curves are time series of flux measurements that vary due to both astrophysical and instrumental effects. Flares are only one of many phenomena like spot variability, transits, eclipses, bursts and dips that can be detected in the data. Accurate automated flare detection algorithms are still challenging~\citep{vida2021}, not least due to this intrinsically heterogeneous morphology of light curves. To quickly identify flare signatures with the lowest false positive and false negative rates in AU Mic, we applied several steps to remove all but the variations caused by flares.
 
 %Before removing these trends, we masked the transits using the information about transit mid-time, transit duration, and, if multiple transits were detected, orbital period obtained from the PSCP and TT catalogs. Except for the superactive stars AU Mic, XXXX, XXXX, and XXXX we did not search for flares inside transits. %We may want to search the transits of stars that have flares in the first place.
 %    - if we have reason to think that we will find flares in transits of stars that are otherwise inactive
 
 % custom de-trending
-The presented method is inspired by the iterative approach in~\citet{davenport2016} who searched the entire Kepler catalog for flares, but does not using rolling median filters except for the noise estimate in the final de-trended light curve. 
 
-The light curves were de-trended in three steps, each of which removes variability on decreasing time scales while preserving the flare signal. Typical flare times rarely exceed are between a few minutes to a few hours, and rarely exceed 1 day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability, which can be of similar time scales. 
+The light curves were de-trended in three steps, each of which removes variability on decreasing time scales while preserving the flare signal. Typical flare times rarely exceed are between a few minutes to a few hours, and rarely exceed 1 day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability in some stats, which can be of similar time scales~(Ilin+2021 in prep.?).   
 
-First, we fit and subtract a third order spline function that goes through the start and end of any light curve portion that has no gaps longer than 2h, and through an averaged flux point every 30h inbetween. This step removes long term trends as well as stellar variability on time scales of 5 days and above. If the light curve portion is shorter than 5 days, this step is skipped. 
+First, we fit and subtract a third order spline function that goes through the start and end of any light curve portion that has no gaps longer than 2h, and through an averaged flux point every 6h (30 h for stars that are less variable than AU Mic) inbetween. This step removes long term trends as well as starspot variability on time scales of seveal days. If the light curve portion is shorter than 5 days, this step is skipped. 
 
 Second, we iteratively remove strong periodic signal on time scales between 2 h and 5 d from the light curve. Each iteration first masks outlier points using a padded sigma-clipping procedure. For this step, single outliers above 3.5 sigma are masked as pure outliers, and series of $n>1$ data points above 3.5 sigma are masked as flare candidates or other extended outliers and padded with rounded $\sqrt{n}$ masked points before the outliers to capture slow rise phases, and rounded $2\sqrt{n}$ after the series to capture a potential extended decay phase that flares often display. Then we calculate a Lomb-Scargle periodogram for the light curve, and performs a least-square fit with a cosine function using the dominant frequency in the periodogram as a starting point. The cosine fit is then subtracted from the light curve. We iterate five times or until the dominant peak's signal-to-noise ratio drops below 1. 
 
@@ -155,19 +158,20 @@ As a third step, we again apply the padded outlier clipping, and smooth any rema
 
 These three steps can sometimes overfit the very edges of the light curve, leaving small exponential drops or rises in the flux that affect the quiescent flux level calculation and/or produce false positive flare detections. If the last and/or the first data point are $1\sigma$ outliers above/below standard deviation of the de-trended light cruve, we fit an exponential growth or decay functions to these fringes.
 
-Finally we estimate the noise in the de-trended light curve using a two rolling median after padding outliers in the aforementioned way, but now above 2.5 sigma, and interpolating between them to arrive at a noise in the flare regions that is informed by the noise levels in a similar light curve portion.
+Finally we estimate the noise in the de-trended light curve using a two rolling median after padding outliers in the aforementioned way, but now above 1.5 sigma (2.5 sigma for light curves with lower activity), and interpolating between them to arrive at a noise in the flare regions that is informed by the noise levels in a similar light curve portion.
+
+
+The method was inspired by the iterative approach in~\citet{davenport2016} who searched the entire Kepler catalog for flares, but does not using rolling median filters except for the noise estimate in the final de-trended light curve. 
+
+\subsection{Flare finding}
 
 The detrended light curves are then searched for flare candidates. For this, we first find an iterative median, and then apply davenport2014 method that requires 3 consecutive positive outliers 3 sigma above median for a candidate detection, and then adds subsequent data points until one of them falls below a 2 sigma above median threshold in order not to cut off detectable parts of the flare decay phase. This series of data points is then flagged as flare. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration (ED) with uncertainty.
 
-\textbf{Define ED and unertainty on ED here if necessary.} 
-
 We tested our de-trending and flare-finding procedure on a range of both real and synthetic light curves that covers all typically observed variability signal patterns, and that contains flare signatures between barely exceeding the detection threshold to the largest flares we typically observe. Since we confirmed all flare candidates by eye, we can note its emprical shortcomings, and workarounds for those. 
-
-In extremely active stars like AU Mic, that spend a significant fraction of the time in flaring state, we can recover more flares by decreasing the sigma clipping threshold in the noise estimate to 1.5 sigma instead of 2.5. 
 
 Events like agrabrighetenings and fireflies that occur when light is reflected off of a passing particle into the detector can cause false positive detections that sometimes look similar to flares. These can be identified as occurring simultaneously in multiple light curves.
 
-The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
+%The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/aumic_illustrate_flares.png} 
 \caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1.}
@@ -184,7 +188,6 @@ The pipeline produces many false positive events in light curves that are extrac
 %\subsection{Flare characterization}
 %\subsection{Orbital Flare De-clustering or Simply: Front vs. Back}
 \section{Flare rate variation with rotational and orbital phases}
-\subsection{Kolmogorov-Smirnov test}
 \label{sec:phases}
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/2021_06_09_AUMic_KStests_meta.png} 
@@ -225,11 +228,11 @@ The obsersed distribution of flares deviates by $1-2\sigma$ from a uniform distr
 \input{tables/prediction.tex}
 \label{tab:prediction}
 \end{table}
-What fraction of flares stem from SPI? How many flares do we need to observe for this fraction to become significant, i.e., so that error on flare frequency << number of "SPI flares"?
+What fraction of flares stem from SPI? How many flares do we need to observe for this fraction to become significant, i.e., so that error on flare frequency $<<$ number of SPI flares?
 \\
 Even if we get a significant deviation, it is not proof that it stems from flaring SPI. However, it would allow us to more concretely model the flaring behaviour. And second, if we are correct to assume that the spot configuration in AU Mic varies across time, and the flaring regions appear and disappear on sufficiently short time scales, stacking temporally separated observations will average out effects of rotational variability. The spot pattern in Sector 1 is more stable than in Sector 27~\citep{martioli2021}
 \section{Discussion}
-\subsection{Were our results expected?}
+%\subsection{Were our results expected?}
 No correlation with rotation period, consistent with literature~\citep{doyle2018, doyle2019}
 
 The data cover only about 45 days of observations, that is, ~5 orbits of AU Mic b, and ~8 rotations of the star.
@@ -237,8 +240,12 @@ The data cover only about 45 days of observations, that is, ~5 orbits of AU Mic 
 \citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable as ECMI originating from the star.  
 
 \citet{fischer2019} did not find any sign of flaring SPI in TRAPPIST-1  
-\section{Summary and Conclusions}
-We find an upper limit to the magnitude of flaring SPI in AU Mic, which is theoretically difficult to constrain~\citep{strugarek2019}. As a next step, we will be applying the methods presented here to a larger sample of star-planet systems to increase the total number of orbits covered and to probe the effects of orbital distance, mass (ratio) etc.
+\section{Conclusions}
+We find weak hints of flaring SPI, and no rotational variability in flare occurrence rates in AU Mic. If the marginal oribital phase correlated signal can, however, be interpreted as emerging SPI signal, we argue that further monitoring of AU Mic may reveal the interaction. Using the method introduced here, a longer observing baseline with TESS, covering additional 30--120 days in 2 min cadence, and light curves from other surveys, optical or in other flare-sensitive wavelength bands, can be stacked consistently to confirm or reject the flaring SPI hypothesis for AU Mic. It would also allow us to measure the strength of, or find an upper limit to, the interaction, which is difficult to constrain in theory~\citep{strugarek2019}. We expect that long gaps on time scales of months to years betweeen consecutive light curves help to average out any confounding rotational variability signal, but should leave the SPI signal fully intact.
+
+% 
+
+In an upcoming study, we will be applying the methods of flare finding and orbital phase analysis presented here to a large sample of star-planet systems with known close-in planets to increase the total number of orbits covered and to probe the effects of orbital distance, mass (ratio) and others.
 \section*{Acknowledgements}
 We made use of numpy~\citep{numpy2020} and pandas~\citep{pandas2010,pandas2020software}
 
