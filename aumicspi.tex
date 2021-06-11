@@ -100,15 +100,15 @@ keyword1 -- keyword2 -- keyword3
 
 \section{Introduction}
 
-Stellar flares are known as electromagnetic explosions in the stellar coronae that are driven by the dynamics of the surface magnetic fields. As such, they are phenomena triggered intrisically by the star. Another class of flares, though phenomenologically the same, are flares triggered by magnetic star-planet interaction (SPI).
+Stellar flares are known as electromagnetic explosions in the stellar coronae that are driven by the dynamics of the surface magnetic fields~\citep{benz2010}. As such, they are phenomena triggered intrisically by the star in isolation. Another class of flares, though phenomenologically the same, are flares triggered by magnetic star-planet interaction (SPI).
 
-In such flares, the energy for the flare is provided by XXXX, and the event itself is triggered by the re-connection of stellar and planetary magnetic field lines. For this to occur, the planet must revolve around the star in close orbit, so that it moves within the stellar Alfven zone for at least a fraction of its orbit. When the planet is within the Alfven zone, the magnetic field and the energy transported along the field lines as particles or waves can fall back on to the star, whereas outside of it i woudl be carried away by the stellar wind. 
+In such flares, the event is triggered by the re-connection of stellar and planetary magnetic field lines~\citep{lanza2018,fischer2019}. For this to occur, the planet must revolve around the star in close orbit, so that it moves within the stellar Alfven zone for at least a fraction of its orbit. When the planet is within the Alfven zone, the magnetic field and the energy transported along the field lines as particles or waves can fall back on to the star, whereas outside of it it would be carried away by the stellar wind pressure. 
 
-\textit{Do we need Prot and Porb to be different actually?}
+The same interaction is thought to enhance X-ray activity and produce chromospheric hot spots~\citep{lanza2009}, but the exact form and intesity of the interaction is difficult to assess even for individual stars~\citep{strugarek2019}
 
 When re-connection between star and planet occurs, the energy channelled back into the stellar atmosphere can create an activity hot spot (XXXX Halpha? Xray?) trigger a flare. The footpoint of the connecting field line is expected to move with the planetary orbit (but need not neccessarily be the sub-planetary point).
 
-
+Several studies of individual systems with close-in and eccentric Hot Jupiters report excess flaring in phase with the planet or close to periastron~\citep{shkolnik2005,pillitteri2011,maggio2015}
 
 However, the exact phase function and magnitude of SPI as it manifests in flares is an open question. \citet{maggio2015} report the observation of an X-ray flare and enhanced chromospheric activity right after periastron of the eccentric Hot Jupiter system HD 17156, but lin light of other (fruitless) searches for excess flares in similar systems~\citep{figueira2016}, the interpretation as SPI remains very suggestive. 
 
@@ -178,7 +178,7 @@ The method was inspired by the iterative approach in~\citet{davenport2016} who s
 \textcolor{red}{We provide an example script that shows how to use this method with Kepler and TESS short cadence light curve with \texttt{AltaiPony}.}
 
 \subsection{Flare finding}
-\label{flarefind}
+\label{sec:flarefind}
 We searched the detrended light curves for flare candidates. For this, we first find an iterative median, and then apply the threshold method introduced by~\citep{chang2015} that requires three consecutive positive outliers $3 \sigma$ above median for a candidate detection. To these data points we then add subsequent data points until one of them falls below a $2 \sigma$ above median threshold in order not to cut off detectable parts of the flare decay phase. This series of data points is then flagged as a flare candidate. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration ($ED$) with uncertainties. The $ED$ is the integrated flare flux $F_{flare}$ divided by the median quiescent flux $F_0$ of the star, integrated over the flare duration~\citep{gershberg1972}:
 \begin{equation}
 \label{eq:ED}
@@ -194,7 +194,7 @@ We tested our de-trending and flare-finding procedure on a range of both real an
 %The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/aumic_illustrate_flares.png} 
-\caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1. Top panel: \texttt{PDCSAP\_FLUX}} light curve. Second panel from the top: De-trended light curve. Third panel from the top: section from the \texttt{PDCSAP\_FLUX}} (black) and de-trended (red) light curve. Four bottom panels: de-trended light curves of flares confirmed in the panel above. The red dots indicate the data points that mark the flares.  
+\caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1. Top panel: \texttt{PDCSAP\_FLUX} light curve. Second panel from the top: De-trended light curve. Third panel from the top: section from the \texttt{PDCSAP\_FLUX} (black) and de-trended (red) light curve. Four bottom panels: de-trended light curves of flares confirmed in the panel above. The red dots indicate the data points that mark the flares.}
 \label{fig:illustrate_detrend}
 \end{figure*}
 
@@ -287,9 +287,9 @@ Longer monitoring of AU Mic in the optical could clarify whether SPI is present 
 
 Although the observed distributions of flares do not imply statistically significant SPI signal, if we interpret the marginal detection as sign of SPI, we can ask what causes the departure from a uniform distribution. One possible explanation in line with models is that there is a magnetic spot on the stellar surface whose magentic field lines connect to the planet~\citep{lanza2018, strugarek2019}. Since the star rotates faster than the planet orbits the star, this spot will tend to be ahead of the subplanetary point. 
 
-In the left panel in Fig.~\ref{fig:speculative} we show that our data are consistent with $\sim 15$ out of the 189 observed flares being events in excess of an otherwise uniform distribution with phase. These additional flares are scattered around phase$\approx 0.78\pm0.08$, that is, preceding the planet by about a quarter phase. In the right panel in Fig.~\ref{fig:speculative} we reproduce the distribution of the most energetic $50\%$ of the total flare sample, and compare it against the same model as before, but keep the total of 15 SPI flares, which fits the observation. This tentatively suggests that SPI flares are rather energetic, and therefore to be found in the high energy subsample. The relative contribution of SPI flares in this regime ($E_{flare}>XXXX$) is about $\sim16\%$ , whereas it is $\sim8\%$ in the full sample ($E_{flare}>XXXX$). 
+In the left panel in Fig.~\ref{fig:speculative} we show that our data are consistent with $\sim 15$ out of the 189 observed flares being events in excess of an otherwise uniform distribution with phase. These additional flares are scattered around phase$\approx 0.78\pm0.08$, that is, preceding the planet by about a quarter phase, similar to the $60-70^\circ$ predicted by~\citet{lanza2008}. In the right panel in Fig.~\ref{fig:speculative} we reproduce the distribution of the most energetic $50\%$ of the total flare sample, and compare it against the same model as before, but keep the total of 15 SPI flares, which fits the observation. This tentatively suggests that SPI flares are rather energetic, and therefore to be found in the high energy subsample. The relative contribution of SPI flares in this regime ($E_{flare}>XXXX$) is about $\sim16\%$ , whereas it is $\sim8\%$ in the full sample ($E_{flare}>XXXX$). 
 
-Since flaring is a statistical phenomenon, where individual flares are very difficult to predict even on the Sun~\citep{barnes2016}, and SPI flares are also expected to vary orbit to orbit in number and intensity~\citep{shkolnik2008,strugarek2015}, it is challenging to identify flares as triggered by SPI as compared to intrinsically. Perspectively, a difference in the flare frequency distribution (Fig.~\ref{fig:ffd}), which would arise as a kink in the power law distribution once a larger sample of flares accumulates and small differences in the distributions can be disentangled from detection efficiency effects and statistical uncertainty.
+Since flaring is a statistical phenomenon, where individual flares are very difficult to predict even on the Sun~\citep{barnes2016}, and SPI flares are also expected to vary orbit to orbit in number and intensity~\citep{shkolnik2008,lanza2009, strugarek2015}, it is challenging to identify flares as triggered by SPI as compared to intrinsically. Perspectively, a difference in the flare frequency distribution (Fig.~\ref{fig:ffd}), which would arise as a kink in the power law distribution once a larger sample of flares accumulates and small differences in the distributions can be disentangled from detection efficiency effects and statistical uncertainty.
 
 
 \section{Conclusions}
