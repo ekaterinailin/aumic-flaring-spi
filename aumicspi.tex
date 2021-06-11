@@ -136,7 +136,7 @@ AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discove
 
 \citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in the radio regime, similar to auroral flares observed in the Jupiter-Io system. AU Mic is the most actively flaring star among all currently known exoplanet hosts (Ilin et al. in prep.). If AU Mic flares easily intrinsically, we may expect SPI flares to also be triggered more readily by AU Mic b. 
 
-In this work, we searched the TESS light curves of AU Mic for signs of flaring SPI in the form of a deviation from a phase-independent flare rate. We present our light curve de-trending and flare finding method in Section \ref{sec:detrendfind}, and present the resulting flare catalog in Section \ref{sec:flarecatalog}. In Section \ref{sec:phases}, we show how we can combine flare samples from general time series measurements into a homogeneous data set, and apply this method to test whether flaring SPI signal is present in the TESS observations. We discuss our results and present our conclusions in Section~\ref{sec:discussion}.
+In this work, we searched the TESS light curves of AU Mic for signs of flaring SPI. We present our light curve de-trending and flare finding method in Section \ref{sec:detrendfind}, and present the resulting flare catalog in Section \ref{sec:flarecatalog}. In Section \ref{sec:phases}, we show how we can combine flare samples from general time series measurements into a homogeneous data set, and apply this method to test whether flaring SPI signal is present in the TESS observations. We discuss our results and present our conclusions in Sections~\ref{sec:discussion} and \ref{sec:conclusions}.
 
 
 \section{TESS photometry}
@@ -176,7 +176,11 @@ The method was inspired by the iterative approach in~\citet{davenport2016} who s
 
 \subsection{Flare finding}
 
-The detrended light curves are then searched for flare candidates. For this, we first find an iterative median, and then apply the threshold method introduced by \citep{chang2015} that requires 3 consecutive positive outliers 3 sigma above median for a candidate detection. To these data points we then add subsequent data points until one of them falls below a 2 sigma above median threshold in order not to cut off detectable parts of the flare decay phase. This series of data points is then flagged as a flare candidate. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration ($ED$) with uncertainties.
+The detrended light curves are then searched for flare candidates. For this, we first find an iterative median, and then apply the threshold method introduced by \citep{chang2015} that requires 3 consecutive positive outliers 3 sigma above median for a candidate detection. To these data points we then add subsequent data points until one of them falls below a 2 sigma above median threshold in order not to cut off detectable parts of the flare decay phase. This series of data points is then flagged as a flare candidate. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration ($ED$) with uncertainties. The $ED$ is the integrated flare flux divided by the median quiescent flux $F_0$ of the star, integrated over the flare duration~\citep{gershberg1972}:
+\begin{equation}
+\label{eq:ED}
+ED=\displaystyle \int \mathrm dt\, \frac{F_{flare}(t)}{F_0}.
+\end{equation}
 
 We tested our de-trending and flare-finding procedure on a range of both real and synthetic light curves that covers all typically observed variability signal patterns, and that contains flare signatures between barely exceeding the detection threshold to the largest flares we typically observe. Since we confirmed all flare candidates by eye, we can note its emprical shortcomings, and workarounds for those. 
 
@@ -207,7 +211,12 @@ Events like agrabrighetenings and fireflies that occur when light is reflected o
 \label{tab:flares}
 \end{table}
 
-We confirmed 75 flares in Sector 1, and 114 flares in Sector 27. We found more flares in Sector 27 because its six times higher observing cadence lowers the detection threshold. Overall, we confirmed fewer flares than reported by \citet{martioli2021} who found the 162 and 157 flares in Sector 1 and 27, respectively. We attribute this difference to the respective detection methods. \citet{martioli2021} flagged single $2.5\sigma$ outliers as candidates, while we required three consecutive data points $3\sigma$ above the noise. Table \ref{tab:flares} lists the confirmed flare events with their respective start and finish times $t_s$ and $t_f$, orbital phase of AU Mic b at $t_s$, amplitude $a$ and $ED$.
+\begin{figure}
+\includegraphics[width=\hsize]{figures/2021_06_11_ffd.png} 
+\caption{Flare frequency distributions (FFDs) in $ED$ space derived from the two TESS light curves of AU Mic.}
+\label{fig:ffd}
+\end{figure}
+We confirmed 75 flares in Sector 1, and 114 flares in Sector 27. We found more flares in Sector 27 because its six times higher observing cadence lowers the detection threshold, which can be seen in the cumulative flare frequency distributions for both Sectors~(Fig.~\ref{fig:ffd}). Overall, we confirmed fewer flares than reported by \citet{martioli2021} who found the 162 and 157 flares in Sector 1 and 27, respectively. We attribute this difference to the respective detection methods. \citet{martioli2021} flagged single $2.5\sigma$ outliers as candidates, while we required three consecutive data points $3\sigma$ above the noise. Table \ref{tab:flares} lists the confirmed flare events with their respective start and finish times $t_s$ and $t_f$, orbital phase of AU Mic b at $t_s$, amplitude $a$ and $ED$.
 
 \section{Flare rate variation with rotational and orbital phases}
 \label{sec:phases}
@@ -234,7 +243,17 @@ We confirmed 75 flares in Sector 1, and 114 flares in Sector 27. We found more f
 \label{fig:cumdistlow}
 \end{figure}
 
-In the following we assume that we analyse $N$ light curves $S_k$ with $k\in [1,N]$ that cover observign periods that do not overlap, and each of which has the same flare detection threshold throughout the observing time of the light curve. However, our method allows that the treshold can vary from light curve to light curve. This is the case for the two Sectors in which AU Mic was observed, because Sector 1 was observed in 2 min cadence, and Sector 27 in 20 s cadence. In the latter, less energetic flares can be detected than in the former.
+
+\begin{table}
+\caption{Required observing time in days for a $99\%$ or $99.9\%$ confidence level detection of orbital phase dependent flare rates. Predictions are based on the K-S statistic obtained from the flare rates in Sectors 1, 27, and the combined sample. The required time is shorter for 20 s cadence observations than for 2 min cadence.}
+\centering
+\input{tables/prediction.tex}
+\label{tab:prediction}
+\end{table}
+
+Stellar flares are thought to occur in the vicinity of active regions on the stellar surface, where magnetic field lines emerge, and magnetic energy can accumulate. AU Mic is a young, extremely active flaring star that is thought to be covered with active regions across the entire stellar surface~(CITATION). Therefore, we expect to observe no preference with rotational phase of the star, because flares will occcur anytime and anywhere for us to observe. If no interaction with the planets in AU Mic's orbit takes place that can trigger flares in certains regions on the star, we also do not expect to observe any dependence of flaring behaviour with orbital phase. We tested this hypothesis by deriving the expected flaring rate distribution under the assumption that no (rotational or orbital) dependence is present, and comparing it against observations. The method works as follows:
+
+We assume that we analyse $N$ light curves $S_k$ with $k\in [1,N]$ that cover observing periods that do not overlap, and each of which has the same flare detection threshold throughout the observing time of the light curve. However, our method allows that the treshold can vary from light curve to light curve. This is the case for the two Sectors in which AU Mic was observed, because Sector 1 was observed in 2 min cadence, and Sector 27 in 20 s cadence. In the latter, less energetic flares can be detected than in the former.
 
 After having searched all $S_k$ for flares (Setion~\ref{sec:detrendfind}), we calculate the deviation from a uniform flare rate distribution with orbital and rotational phase in five steps:
 \begin{enumerate}
@@ -254,19 +273,10 @@ We show both distributions for the complete sample of orbital flare phases that 
 
 The resulting $p$-values obtained from the K-S test are shown in Fig.~\ref{fig:kstests}. Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude (left panel in Fig.~\ref{fig:kstests}), consistent with the literature~\citep{doyle2018, doyle2019}. 
 
-The observed distribution of flares deviates by $1-2\sigma$ from a uniform distribution of flares with orbital period, which might be attributed to flaring SPI (right panel in Fig.~\ref{fig:kstests}). This effect is stronger for more energetic half~(Fig.~\ref{fig:cumdisthigh}), but disappears for the least energetic half of the flare sample~(Fig.~\ref{fig:cumdistlow}) when the data from both Sectors are combined. The deviation seen in the cumulative distribution in the full sample also becomes more pronounced in the more energetic subsample~(Fig.~\ref{fig:cumdisthigh}). 
+The observed distribution of flares deviates by $1-2\sigma$ from a uniform distribution of flares with orbital period, which might be attributed to flaring SPI (right panel in Fig.~\ref{fig:kstests}). This effect is stronger for more energetic half~(Fig.~\ref{fig:cumdisthigh}), but disappears for the least energetic half of the flare sample~(Fig.~\ref{fig:cumdistlow}) when the data from both Sectors are combined. The deviation seen in the cumulative distribution in the full sample also becomes more pronounced in the more energetic subsample~(Fig.~\ref{fig:cumdisthigh}). Interestingly, the effect in the high energy half has a similar magnitude in both Sectors studied separately, suggesting that the effect might be persistent over the two year baseline that spans the two TESS Sectors.
 
-The TESS data comprise $<50$ days of observations, i.e., covering only abbout $5.7$ orbits of AU Mic b. The same magnitude of deviation would be significant at the $99\%$ or  $99.9\%$ confidence level if the observation baseline could be extended by  62.7 d ($7.4\;P_{orb}$), or 117.3 d ($13.9\;P_{orb}$), respectively. Therefore, longer monitoring of AU Mic in the optical could clarify whether SPI is present or not. In contrast to spot-induced modulation of flare occurrence rates that can only be substantiated for spots that are sufficiently long-lived, orbital modulation can use combined data from many observational campaigns. 
-\begin{table}
-\caption{Required observing time in days for a $99\%$ or $99.9\%$ confidence level detection of orbital phase dependent flare rates. Predictions are based on the K-S statistic obtained from the flare rates in Sectors 1, 27, and the combined sample. The required time is shorter for 20 s cadence observations than for 2 min cadence.}
-\centering
-\input{tables/prediction.tex}
-\label{tab:prediction}
-\end{table}
-What fraction of flares stem from SPI? How many flares do we need to observe for this fraction to become significant, i.e., so that error on flare frequency $<<$ number of SPI flares?
-\\
-Even if we get a significant deviation, it is not proof that it stems from flaring SPI. However, it would allow us to more concretely model the flaring behaviour. And second, since the spot configuration in AU Mic varies across time~\citep{martioli2021}, stacking temporally separated observations will average out effects of rotational variability. 
-\section{Discussion and Conclusions}
+The TESS data comprise $<50$ days of observations, i.e., covering only abbout $5.7$ orbits of AU Mic b. The same magnitude of deviation would be significant at the $99\%$ or  $99.9\%$ confidence level if the observation baseline could be extended by 62.7 d ($7.4\;P_{orb}$), or 117.3 d ($13.9\;P_{orb}$), respectively. Therefore, longer monitoring of AU Mic in the optical could clarify whether SPI is present or not. In contrast to spot-induced modulation of flare occurrence rates that can only be substantiated for spots that are sufficiently long-lived, orbital modulation can use combined data from many observational campaigns, even if they are scattered across long periods of time. moreover, since the spot configuration in AU Mic varies across time~\citep{martioli2021}, stacking temporally separated observations will eventually average out effects of rotational variability. 
+\section{Discussion}
 \label{sec:discussion}
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/2021_06_10_speculative_SPI_spot.png} 
@@ -274,21 +284,21 @@ Even if we get a significant deviation, it is not proof that it stems from flari
 \label{fig:speculative}
 \end{figure*}
 
-Although the observed distributions of flares do not imply statistically significant SPI signal, if we interpret the marginal detection as sign of SPI, we can ask what causes the departure from a uniform distribution. One possible explanation in line with models is that there is a magnetic spot on the stellar surface whose magentic field lines connect to the planet. Since the star rotates faster than the planet orbits the star, this spot will be ahead of the subplanetary point. 
-
-In the left panel in Fig.~\ref{fig:speculative} we show that our data are consistent with $\sim 15$ out of the 189 observed flares being events in excess of an otherwise uniform distribution with phase. These additional flares are scattered around phase$\approx 0.78\pm0.08$, that is, preceding the planet by about a quarter phase. In the right panel in Fig.~\ref{fig:speculative} we reproduce the distribution of the most energetic $50\%$ of the total flare sample, and compare it against the same model as before, but keep the total of 15 SPI flares, assuming that SPI flares are rather energetic and therefore to be found in this high energy subsample. The relative contribution of SPI flares then rises from $8\%$ to $16\%$.
 
 
+Although the observed distributions of flares do not imply statistically significant SPI signal, if we interpret the marginal detection as sign of SPI, we can ask what causes the departure from a uniform distribution. One possible explanation in line with models is that there is a magnetic spot on the stellar surface whose magentic field lines connect to the planet~\citep{lanza2018, strugarek2019}. Since the star rotates faster than the planet orbits the star, this spot will tend to be ahead of the subplanetary point. 
+
+In the left panel in Fig.~\ref{fig:speculative} we show that our data are consistent with $\sim 15$ out of the 189 observed flares being events in excess of an otherwise uniform distribution with phase. These additional flares are scattered around phase$\approx 0.78\pm0.08$, that is, preceding the planet by about a quarter phase. In the right panel in Fig.~\ref{fig:speculative} we reproduce the distribution of the most energetic $50\%$ of the total flare sample, and compare it against the same model as before, but keep the total of 15 SPI flares, which fits the observation. This tentatively suggests that SPI flares are rather energetic, and therefore to be found in the high energy subsample. The relative contribution of SPI flares in this regime ($E_{flare}>XXXX$) is about $\sim16\%$ , whereas it is $\sim8\%$ in the full sample ($E_{flare}>XXXX$). 
+
+Since flaring is a statistical phenomenon, where individual flares are very difficult to predict even on the Sun~\citep{barnes2016}, and SPI flares are also expected to vary orbit to orbit in number and intensity~\citep{shkolnik2008,strugarek2015}, it is challenging to identify flares as triggered by SPI as compared to intrinsically. Perspectively, a difference in the flare frequency distribution (Fig.~\ref{fig:ffd}), which would arise as a kink in the power law distribution once a larger sample of flares accumulates and small differences in the distributions can be disentangled from detection efficiency effects and statistical uncertainty.
 
 
+\section{Conclusions}
+\label{sec:conclusions}
+A statistically significant orbital phase dependence of flaring behaviour is the closest we can get to detecting flaring SPI directly. Using high cadence TESS observations of AU Mic, we find weak hints of flaring SPI, and no rotational variability in flare occurrence rates. If the marginal  signal in phase with the orbit of the innermost planet AU Mic b can, however, be interpreted as emerging SPI signal, e.g., from an active spot with a steady phase lag towards the planet, we argue that further monitoring of AU Mic may reveal the interaction. 
+Using the method introduced in this work, a longer observing baseline with TESS, covering additional 30--120 days in 2 min cadence, and light curves from other surveys, optical or in other flare-sensitive wavelength bands, can be stacked consistently to confirm or reject the flaring SPI hypothesis for AU Mic. It would also allow us to measure the strength of the interaction, which is difficult to constrain in theory~\citep{strugarek2019}, and discriminate different physical models of flaring SPI~\citep{lanza2018}. We argue further that long gaps on time scales of months to years betweeen consecutive light curves will help average out any confounding rotational variability signal, but should leave the SPI signal fully intact.
 
-
-
-We find weak hints of flaring SPI, and no rotational variability in flare occurrence rates in AU Mic. If the marginal oribital phase correlated signal can, however, be interpreted as emerging SPI signal, we argue that further monitoring of AU Mic may reveal the interaction. Using the method introduced here, a longer observing baseline with TESS, covering additional 30--120 days in 2 min cadence, and light curves from other surveys, optical or in other flare-sensitive wavelength bands, can be stacked consistently to confirm or reject the flaring SPI hypothesis for AU Mic. It would also allow us to measure the strength of, or find an upper limit to, the interaction, which is difficult to constrain in theory~\citep{strugarek2019}. We expect that long gaps on time scales of months to years betweeen consecutive light curves help to average out any confounding rotational variability signal, but should leave the SPI signal fully intact.
-
-% 
-
-In an upcoming study, we will be applying the methods of flare finding and orbital phase analysis presented here to a large sample of star-planet systems with known close-in planets to increase the total number of orbits covered and to probe the effects of orbital distance, mass (ratio) and others.
+In an upcoming study, we will apply the methods of flare finding and orbital phase analysis presented here to a large sample of star-planet systems with known close-in planets to increase the total number of orbits covered and to probe the effects of orbital distance and star-planet mass ratio on the presence and intensity of flaring SPI.
 \section*{Acknowledgements}
 We made use of numpy~\citep{numpy2020} and pandas~\citep{pandas2010,pandas2020software}
 
