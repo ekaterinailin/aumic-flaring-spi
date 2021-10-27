@@ -104,7 +104,7 @@ stars: individual: AU Mic -- planet-star interactions -- stars: flare -- planets
 
 Flares are electromagnetic explosions in the stellar corona that are driven by the dynamics of the surface magnetic fields~\citep{benz2010}. They can be triggered intrisically by the star in isolation, but also by magnetic star-planet interaction (SPI).
 
-In SPI flares, the event is induced by the re-connection of stellar and planetary magnetic field lines~\citep{saur2013,lanza2018,fischer2019}. For this to occur, the planet must revolve around the star in close orbit, so that it moves within the stellar Alfv\'en zone for at least a fraction of its orbit. When the planet is within the Alfv\'en zone, the magnetic field and the energy transported along the field lines as particles or waves can fall back on to the star, whereas outside of it it would be carried away by the stellar wind pressure. 
+In SPI flares, the event is induced by the re-connection of stellar and planetary magnetic field lines~\citep{saur2013,lanza2018close-by,fischer2019}. For this to occur, the planet must revolve around the star in close orbit, so that it moves within the stellar Alfv\'en zone for at least a fraction of its orbit. When the planet is within the Alfv\'en zone, the magnetic field and the energy transported along the field lines as particles or waves can fall back on to the star, whereas outside of it it would be carried away by the stellar wind pressure. 
 
 
 %When re-connection between star and planet occurs, the energy channelled back into the stellar atmosphere can create an activity hot spot (XXXX Halpha? Xray?) trigger a flare. The footpoint of the connecting field line is expected to move with the planetary orbit (but need not neccessarily be the sub-planetary point).
@@ -116,10 +116,10 @@ One interpretation is that the interaction is so weak and intermittent that the 
 Recently, AU Mic, an M0-M1~\citep{pecaut2013,gaidos2014} pre-main sequence dwarf star has been shown to be a promising candidate for magnetic SPI with its innermost planet~\citep{kavanagh2021}. AU Mic is a member of the $\beta$ Pic young moving group, which is $16-29$ Myr old~\citep{malo2014,binks2014,mamajek2014,bell2015,binks2016,shkolnik2017,miretroig2020}. %Based on its lithium abundance, AU Mic could be a few Myr older than the average group member~\citep{malo2014}. 
 %Its rotation period of about $4.862$ d~\citep{plavchan2020, martioli2021} was determined from photometry obtained by the Transiting Exoplanet Survey Satellite~\citep[TESS,][]{ricker2014}.
 
-AU Mic rotates at a $4.862$ d period; it shows strong solar-like differential rotation; possesses a strong, mostly poloidal large-scale magentic field of $>400$ G; and several activity indicators vary in phase with the star's latitude-dependent rotation periods~\citep{klein2021}. Optical light curves obtained by the Transiting Exoplanet Survey Satellite~\citep[TESS,][]{ricker2014} confirm previous observations~\citep{katsova1999, robinson2001, redfield2002} that AU Mic is actively flaring~\citep{martioli2021}.
+AU Mic rotates at a $4.862$ d period; it shows strong solar-like differential rotation; possesses a strong, mostly poloidal large-scale magentic field of $>400$ G; and several activity indicators vary in phase with the star's latitude-dependent rotation periods~\citep{klein2021}. Optical light curves obtained by the Transiting Exoplanet Survey Satellite~\citep[TESS,][]{ricker2014} confirm previous observations~\citep{katsova1999, robinson2001, redfield2002} that AU Mic is actively flaring~\citep{martioli2021new}.
 %Spectral type tends to agree on M1, but effective temperature is lower in Plavchan et al. (2009)
 
-AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021}. %A magnetic interaction between star and planet can not only trigger flares, but also enhance X-ray activity and produce chromospheric hot spots~\citep{lanza2009}%, but the exact form and intesity of the interaction is difficult to assess even for individual stars~\citep{strugarek2019} 
+AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discovered using TESS photometry~\citep{plavchan2020} with an orbital period of $8.463$ d~\citep{plavchan2020,martioli2021new}. %A magnetic interaction between star and planet can not only trigger flares, but also enhance X-ray activity and produce chromospheric hot spots~\citep{lanza2009}%, but the exact form and intesity of the interaction is difficult to assess even for individual stars~\citep{strugarek2019} 
 \citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in the radio regime, a signal indicative of a phenomenon similar to auroral flares observed in the Jupiter-Io system. Since AU Mic is the most actively flaring star among all currently known exoplanet hosts (Ilin et al. in prep.), we may expect SPI flares to also be triggered more readily by AU Mic b. 
 
 In this work, we searched the TESS light curves of AU Mic for signs of flaring SPI. We present our light curve de-trending and flare finding method in Section \ref{sec:detrendfind}, and present the resulting flare catalog in Section \ref{sec:flarecatalog}. In Section \ref{sec:phases}, we show how we can combine flare samples from general time series measurements into a homogeneous data set, and apply this method to test whether flaring SPI signal is present in the TESS observations. We discuss our results and present our conclusions in Sections~\ref{sec:discussion} and \ref{sec:conclusions}.
@@ -128,7 +128,7 @@ In this work, we searched the TESS light curves of AU Mic for signs of flaring S
 \section{TESS photometry}
 The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27$ d in each observing Sector. About $200\,000$ stars have been observed in 2-min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20-s cadence.
 
-AU Mic was observed in Sector 1 in 2 min cadence and in Sector 27 in 20 s cadence. The light curves reveal strong rotational variability from starspots, vigorous flaring and show transits of two planets, AU Mic b~\citep{plavchan2020,martioli2021} and AU Mic c~\citep{martioli2021}.
+AU Mic was observed in Sector 1 in 2 min cadence and in Sector 27 in 20 s cadence. The light curves reveal strong rotational variability from starspots, vigorous flaring and show transits of two planets, AU Mic b~\citep{plavchan2020,martioli2021new} and AU Mic c~\citep{martioli2021new}.
 % 20000 per sector does not add up, because of stars observed in multiple sectors, the 20000 and 1000 figures can be found here: https://tess.mit.edu/observations/target-lists/
 % extended TESS mission https://heasarc.gsfc.nasa.gov/docs/tess/extended.html
 
@@ -189,17 +189,24 @@ We tested our de-trending and flare-finding procedure on a range of both real an
 \caption{Flare frequency distributions (FFDs) in $ED$ space obtained from the two TESS light curves of AU Mic.}
 \label{fig:ffd}
 \end{figure}
-We confirmed 75 flares in Sector 1, and 114 flares in Sector 27~(see bottom panels in Fig.~\ref{fig:illustrate_detrend} for examples). We found more flares in Sector 27 because its six times higher observing cadence lowers the detection threshold, which can be seen in the cumulative flare frequency distributions for both Sectors~(Fig.~\ref{fig:ffd}). Overall, we confirmed fewer flares than reported by \citet{martioli2021} who found the 162 and 157 flares in Sector 1 and 27, respectively. We attribute this difference to the respective detection methods. \citet{martioli2021} flagged single $2.5\sigma$ outliers as candidates, while we required three consecutive data points $3\sigma$ above the noise. Table \ref{tab:flares} lists the confirmed flare events with their respective start and finish times $t_s$ and $t_f$, orbital phase of AU Mic b at $t_s$, amplitude $a$ and $ED$.
+We confirmed 75 flares in Sector 1, and 114 flares in Sector 27~(see bottom panels in Fig.~\ref{fig:illustrate_detrend} for examples). We found more flares in Sector 27 because its six times higher observing cadence lowers the detection threshold, which can be seen in the cumulative flare frequency distributions for both Sectors~(Fig.~\ref{fig:ffd}). Overall, we confirmed fewer flares than reported by \citet{martioli2021new} who found the 162 and 157 flares in Sector 1 and 27, respectively. We attribute this difference to the respective detection methods. \citet{martioli2021new} flagged single $2.5\sigma$ outliers as candidates, while we required three consecutive data points $3\sigma$ above the noise. Table \ref{tab:flares} lists the confirmed flare events with their respective start and finish times $t_s$ and $t_f$, orbital phase of AU Mic b at $t_s$, amplitude $a$ and $ED$.
 
 \section{Flare rate variation with rotational and orbital phases}
 \label{sec:phases}
 
 
-\begin{figure*}
-\includegraphics[width=\hsize]{figures/2021_09_01_AUMic_ADtests_meta.png} 
-\caption{Anderson-Darling test results with varying phase offsets.}
-\label{fig:adtest}
-\end{figure*}
+%\begin{figure*}
+%\includegraphics[width=\hsize]{figures/2021_09_01_AUMic_ADtests_meta.png} 
+%\caption{Anderson-Darling test results with varying phase offsets.}
+%\label{fig:adtest}
+%\end{figure*}
+
+\begin{table}
+\caption{Mean and standard deviation of $p$ values of the custom AD tests for the orbital, rotational and synodic periods of AU Mic (and AU Mic b) calculated using ten different phase offsets. Smallest $p$-value is boldfaced. There is no significant deviation from uniform flaring in time with either of the periods. $n$: number of flares in sample.}
+\centering
+\input{tables/pvals.tex}
+\label{tab:pvals}
+\end{table}
 
 Stellar flares are thought to occur in the vicinity of active regions on the stellar surface, where magnetic field lines emerge, and magnetic energy can accumulate. AU Mic is a young, extremely active flaring star that is covered with large active regions~\citep{linsky1994, kochukhov2020, plavchan2020}, and possibly a multitude of magnetic loops across the entire corona~\citep{cranmer2013}\textcolor{red}{More on what we know about MF of AU Mic that pertains to its flaring here, and M dwarfs in general}. 
 
@@ -207,7 +214,7 @@ We expect to observe no preference with rotational phase of the star, because fl
 
 We assume that we analyse $N$ light curves $S_k$ with $k\in [1,N]$ that cover observing periods that do not overlap, and each of which has the same flare detection threshold throughout the observing time of the light curve. However, our method allows that the treshold can vary from light curve to light curve, as is the case in our data set for AU Mic.
  
-After having searched all $S_k$ for flares, we calculate the deviation from a uniform flare rate distribution with orbital and rotational phase using the Anderson-Darling test~\citep{anderson1952, stephens2006} in six steps:
+After having searched all $S_k$ for flares, we calculate the deviation from a uniform flare rate distribution with orbital, rotational, synodic phase using the Anderson-Darling test~\citep{anderson1952, stephens2006} in six steps:
 \begin{enumerate}
 \item Take all $F$ flare occurrence times from the data and derive their orbital or rotational phases $x_i$ with $i \in [1,F]$. 
 \item Sort all $x_i$ by phase in ascending order.
@@ -219,13 +226,15 @@ After having searched all $S_k$ for flares, we calculate the deviation from a un
 
 Compare AD-test to KS-test results in Fig.~\ref{fig:kstest}.
 
-The resulting $p$-values obtained from the above procedure are shown in Fig.~\ref{fig:adtest}. One advantage of the Anderson-Darlin test over other flexible test like the Kolmogorov-Smirnov test is its sensitivity to the end of the distribution, i.e. phases near 0 or 1. Since for rotational and orbital phase the choice of phase 0 is arbitrary and the result should not depend on this choice we performed the A-D test at varying start phases with step size $0.1$. Except for a few outliers, the chosen phases lead to consisent results~(see the comparison with the K-S test in Section~\ref{sec:discussion}). However, these results demonstrate that neither the AD nor the KS test performed on a any single phase starting value give can difinitive answers.
+The resulting $p$-values obtained from the above procedure are shown in Table~\ref{tab:pvals}. No choice of Sector, energy split in $ED$, or period resulted in significant deviations from uniform flaring in time. One advantage of the Anderson-Darlin test over other flexible test like the Kolmogorov-Smirnov test is its sensitivity to the end of the distribution, i.e. phases near 0 or 1. Since for rotational and orbital phase the choice of phase 0 is arbitrary and the result should not depend on this choice we performed the A-D test at varying start phases with step size $0.1$. Except for a few outliers, the chosen phases lead to consisent results although there is still some variation at non-significant $p$-values. However, these results demonstrate that neither the AD nor the KS test performed on a any single phase starting value give can difinitive answers.
 
-Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude (left panel in Fig.~\ref{fig:adtest}), as in the overwhelming majority of M dwarfs~\citep{doyle2018, doyle2019}. 
+Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude, as in the overwhelming majority of M dwarfs~\citep{doyle2018, doyle2019}. 
+
+
 
 We split the rotational variability search by the two Sectors, because spot patterns were detected to be stabe over several rotation periods of the star~\citep{szabo2021changing}, but the changes in the shapes of the modulation that occurred in the two years between the two Sectors indicate that spot evolution is taking place on longer time scales~\citep{martioli2021new}.
 
-The observed distribution of flares does not deviate from a uniform distribution of flares with orbital period either (right panel in Fig.~\ref{fig:kstests}). 
+The observed distribution of flares does not deviate from a uniform distribution of flares with orbital period either. 
 
 \section{Discussion}
 \label{sec:discussion}
@@ -240,8 +249,8 @@ The observed distribution of flares does not deviate from a uniform distribution
 Physical reasons for the absense of flaring SPI
 
 \begin{itemize}
-\item AU Mic b has no magnetic field that could interact with the stellar magnetic field to trigger flares~\citep{lanza2018close-by}. Planetary magnetic fields in the Solar System are diverse and depend heavily on the internal structure and composition of the planet~\citep{stevenson2003planetary}, and no direct measurements of exoplanet magnetic fields exist today. Therefore, it is difficult to predict the presence, or even the strength of the AU Mic b's field based solely on mass and radius estimates.
-\item AU Mic b's orbit could be outside the Alfv\'en zone of AU Mic, either constantly or temporarily. Although the star has a stron magnetic field, a high mass loss rate may pull the Alfven surface closer to the star~\citep{kavanagh2021}. No energy can be channeled from the planet to the star. This may change due to stellar cycles, in which case we might observe flaring SPI in AU Mic 
+\item AU Mic b has no magnetic field that can interact with the stellar magnetic field to trigger flares~\citep{lanza2018close-by}. Planetary magnetic fields in the Solar System are diverse and depend heavily on the internal structure and composition of the planet~\citep{stevenson2003planetary}, and no direct measurements of exoplanet magnetic fields exist today. Therefore, it is difficult to predict the presence, or even the strength of the AU Mic b's field based solely on mass and radius estimates.
+\item AU Mic b's orbit could be outside the Alfv\'en zone of AU Mic, either constantly or temporarily. Although the star has a stron magnetic field, a high mass loss rate may pull the Alfven surface closer to the star~\citep{kavanagh2021}. No energy can be channeled from the planet to the star. This may change with evolving stellar cycle. \citet{ibanez-bustos2019first} report a 5-year chromospheric activity cycle, but is not clear how mass loss would be linked to that, not even on the Sun
 \end{itemize}
 
 
@@ -258,7 +267,7 @@ Possible reasons not to observe flaring SPI despite its presence:
 \label{sec:conclusions}
 Since SPI flares are morphologically identical to intrinsic stellar flares, a statistically significant orbital phase dependence of flaring behaviour is the closest we can currently get to detecting the effect directly. Using high cadence TESS observations of AU Mic, an early M dwarf with a close-in planet detected in 2020, we did not find any clear sign of flaring SPI.
 
-The strength of the interaction is difficult to constrain in theory~\citep{strugarek2019}, and different physical models of flaring SPI co-exist~\citep{lanza2018, saur2013}. Moreover, the orbit of AU Mic b is not yet synchronized with the stellar rotation period which may lead to . Although AU Mic has the largest number of flares detected among all exoplanet hosts detected to date, we conclude that the vast majority of them are manifestations of intrinsic stellar activity. 
+The strength of the interaction is difficult to constrain in theory~\citep{strugarek2019}, and different physical models of flaring SPI co-exist~\citep{lanza2018close-by, saur2013}. Moreover, the orbit of AU Mic b is not yet synchronized with the stellar rotation period which may lead to . Although AU Mic has the largest number of flares detected among all exoplanet hosts detected to date, we conclude that the vast majority of them are manifestations of intrinsic stellar activity. 
 
 We do not rule out that, as time series observations of AU Mic accumulate with TESS, and soon PLATO, SPI-triggered flare can be detected. We argue further that long gaps on time scales of months to years betweeen consecutive light curves will help average out any confounding rotational variability signal, but should leave the SPI signal fully intact. The method we described is also insenstive to the effect of activity cycles, because these are caused by the stellar dynamo, and therefore elevate flaring activity in the entire star, usually without preference for specific longitudes or orbital phase. 
 
