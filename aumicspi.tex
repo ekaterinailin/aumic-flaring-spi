@@ -185,13 +185,13 @@ We tested our de-trending and flare-finding procedure on a range of both real an
 \end{table}
 
 \begin{figure}
-\includegraphics[width=\hsize]{figures/2021_06_11_ffd.png} 
-\caption{Flare frequency distributions (FFDs) in $ED$ space obtained from the two TESS light curves of AU Mic.}
+\includegraphics[width=\hsize]{figures/ffd.png} 
+\caption{Cumulative flare frequency distributions (FFDs) obtained from the two TESS light curves of AU Mic.}
 \label{fig:ffd}
 \end{figure}
 We confirmed 75 flares in Sector 1, and 114 flares in Sector 27~(see bottom panels in Fig.~\ref{fig:illustrate_detrend} for examples). We found more flares in Sector 27 because its six times higher observing cadence lowers the detection threshold, which can be seen in the cumulative flare frequency distributions for both Sectors~(Fig.~\ref{fig:ffd}). Overall, we confirmed fewer flares than reported by \citet{martioli2021new} who found the 162 and 157 flares in Sector 1 and 27, respectively. We attribute this difference to the respective detection methods. \citet{martioli2021new} flagged single $2.5\sigma$ outliers as candidates, while we required three consecutive data points $3\sigma$ above the noise. Table \ref{tab:flares} lists the confirmed flare events with their respective start and finish times $t_s$ and $t_f$, orbital phase of AU Mic b at $t_s$, amplitude $a$ and $ED$.
 
-\section{Flare rate variation with rotational and orbital phases}
+\section{Flare rate variation with rotational, orbital, and synodic phases}
 \label{sec:phases}
 
 
@@ -216,21 +216,21 @@ We assume that we analyse $N$ light curves $S_k$ with $k\in [1,N]$ that cover ob
  
 After having searched all $S_k$ for flares, we calculate the deviation from a uniform flare rate distribution with orbital, rotational, synodic phase using the Anderson-Darling test~\citep{anderson1952, stephens2006} in six steps:
 \begin{enumerate}
-\item Take all $F$ flare occurrence times from the data and derive their orbital or rotational phases $x_i$ with $i \in [1,F]$. 
+\item Take all $F$ flare occurrence times from the data and derive their phases $x_i$ with $i \in [1,F]$. 
 \item Sort all $x_i$ by phase in ascending order.
 \item Calculate observing time per phase using all valid data points in the de-trended light curves, taking into account the different observing cadences.
-\item Sample $F$ flare occurrence phases from the phase coverage distribution to get a distribution of flare phases. This step generates a list of flares that are uniformly distributed across all orbital or rotational phases.
-\item Repeat the previous step to obtain a large number of distributions, and calculate the AD statistic for each of them.  In this study, we generated 10 000 sample distributions for each test.
-\item Finally, compare the AD statistic of the observed distribution of flare phases against the distribution of AD statistics from above, and calculate the significance level ($p$-value) of the difference. 
+\item Sample $F$ flare occurrence phases from the phase coverage distribution to get a distribution of flare phases. This step generates a list of flares that are uniformly distributed across all phases.
+\item Repeat the previous step to obtain a large number of distributions, and calculate the A-D statistic for each of them.  In this study, we generated 10 000 sample distributions for each test.
+\item Finally, compare the A-D statistic of the observed distribution of flare phases against the distribution of A-D statistics from above, and calculate the significance level ($p$-value) of the difference. 
 \end{enumerate}
 
-The resulting $p$-values obtained from the above procedure are shown in Table~\ref{tab:pvals}. No choice of Sector, energy split in $ED$, or period resulted in a consistently significant deviation from uniform flaring in time. One advantage of the Anderson-Darlin test over other flexible test like the Kolmogorov-Smirnov test is its sensitivity to the end of the distribution, i.e. phases near 0 or 1. Since for rotational and orbital phase the choice of phase 0 is arbitrary and the result should not depend on this choice we performed both the A-D and the K-S test at varying start phases with step size $0.1$. For the A-D test, except for a few outliers, the chosen phases lead to consisent results although there is still some variation at non-significant $p$-values. For the K-S test, the variation with start phase was much larger, yielding both very and very high $p$-values for almost every sub-sample examined. These results demonstrate that neither the A-D nor the K-S test performed on a any single phase starting value can yield definitive answers, but when comparing the two approaches the A-D test is more reliable.
+One advantage of the Anderson-Darlin test over other flexible test like the Kolmogorov-Smirnov test is its sensitivity to the end of the distribution, i.e. phases near 0 or 1. Since the choice of phase 0 is arbitrary, and the result should not depend on this choice, we performed both the A-D and the K-S test at varying start phases with step size $0.1$. For the A-D test, except for a few outliers, the chosen phases lead to consisent results although there is still some variation at non-significant $p$-values. For the K-S test, the variation with start phase was much larger, yielding both significant and insignificant $p$-values for almost every sub-sample examined. These results demonstrate that neither the A-D nor the K-S test performed on a any single phase starting value can yield definitive answers, but when comparing the two approaches the A-D test is more reliable.
 
-Because AU Mic is seen nearly equator-on, the rotational phase diagrams are consistent with a uniform distribution of flares with stellar longitude, consistent with observation of most M dwarfs~\citep{doyle2018, doyle2019}. 
+The resulting $p$-values for the A-D test obtained from the above procedure are shown in Table~\ref{tab:pvals}. No choice of Sector, energy split, or period resulted in a consistently significant deviation from uniform flaring in time. 
 
-We split the rotational variability search by the two Sectors, because spot patterns were detected to be stabe over several rotation periods of the star~\citep{szabo2021changing}, but the changes in the shapes of the modulation that occurred in the two years between the two Sectors indicate that spot evolution is taking place on longer time scales~\citep{martioli2021new}.
+Because AU Mic is seen nearly equator-on, our results imply a uniform distribution of flares with stellar longitude. The spot structure evolved between Sector 1 and 27~\citep{martioli2021new}, but during each Sector spot patterns were stable over several rotation periods of the star~\citep{szabo2021changing}. However, considering each Sector separately does not reveal any deviation from uniform flaring with longitude. This observation is consistent with most M dwarfs that were searched for rotational periodicity~\citep{doyle2018, doyle2019}. CITE HOWARD 
 
-The observed distribution of flares does not deviate from a uniform distribution of flares with orbital period either. 
+The observed distribution of flares does not deviate from a uniform distribution of flares with orbital or synodic period either. 
 
 \section{Discussion}
 \label{sec:discussion}
