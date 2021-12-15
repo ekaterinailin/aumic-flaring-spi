@@ -171,7 +171,7 @@ We tested our flare-finding procedure on a range of both real and synthetic ligh
 %The pipeline produces many false positive events in light curves that are extracted from targets that heavily saturate the detector. In these, flares and astrophysical outbursts cannot be unambiguously distinguished from what is more likely a form of overdrive in the detectors' signal processing. 
 \begin{figure*}
 \includegraphics[width=\hsize]{figures/aumic_illustrate_flares.png} 
-\caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1. Top panel: \texttt{PDCSAP\_FLUX} light curve. Second panel from the top: De-trended light curve. Third panel from the top: section from the \texttt{PDCSAP\_FLUX} (black) and de-trended (red) light curve. Four bottom panels: de-trended light curves of flares confirmed in the panel above. The red dots indicate the data points that mark the flares.}
+\caption{Subset of flares detected in the TESS light curve of AU Mic, Sector 1. Top panel: \texttt{PDCSAP\_FLUX} light curve. Second panel from the top: De-trended light curve. Third panel from the top: section from the \texttt{PDCSAP\_FLUX} (black) and de-trended (red) light curve. Two bottom panels: de-trended light curves of flares confirmed in the panel above. The red dots indicate the data points that mark the flares.}
 \label{fig:illustrate_detrend}
 \end{figure*}
 
@@ -222,7 +222,7 @@ P_{syn} = \left|\dfrac{1}{P_{rot}} - \dfrac{1}{P_{orb}}\right|^{-1}.
 \end{equation}
 
 
-In summary, if an inhomogeneous distribution of active regions on the stellar surface, or the interaction of AU Mic with the innermost planet in its orbit takes place that triggers flares in the observable regime, the flaring rates in phase with $P_{rot}$, $P_{orb}$ or $P_{syn}$  will deviate from a uniform distribution. Our null hypothesis is that no rotational, orbital, or synodic dependence is present. We test if we have to reject this hypothesis using a customized Anderson-Darling test~\citep[A-D test,][]{anderson1952, stephens2006}. The A-D test is more sensitive to the end of the distribution, i.e. phases near 0 or 1, than the more widely used Kolmogorov-Smirnov~\citep{kolmogorov1933sulla,smirnov1948table} test. Since we are agnostic about the phase at which the flaring rates will deviate from a uniform distribution, we choose the A-D test.
+In summary, if an inhomogeneous distribution of active regions on the stellar surface, or the interaction of AU Mic with the innermost planet in its orbit takes place that triggers flares in the observable regime, the flaring rates in phase with $P_{rot}$, $P_{orb}$ or $P_{syn}$  will deviate from a uniform distribution. Our null hypothesis is that no rotational, orbital, or synodic dependence is present. We test if we have to reject this hypothesis using a customized Anderson-Darling test~\citep[A-D test,][]{anderson1952, stephens1974edf}. The A-D test is more sensitive to the end of the distribution, i.e. phases near 0 or 1, than the more widely used Kolmogorov-Smirnov~\citep{kolmogorov1933sulla,smirnov1948table} test. Since we are agnostic about the phase at which the flaring rates will deviate from a uniform distribution, we choose the A-D test.
 
 With this method we can analyse $N$ light curves that cover observing periods that do not overlap, and each of which has the same flare detection threshold throughout the observing time of the light curve. It is permissible, however, that this treshold varies from light curve to light curve, as is the case in our data set for AU Mic.
  
@@ -236,7 +236,7 @@ After having searched all light curves for flares, we calculate the deviation fr
 A^2 = - N -\displaystyle\sum_{i=1}^N \dfrac{2i-1}{N}\left(\log(\hat{\phi}(x_i))+\log(1-\hat{\phi}(x_{N+1-i}))\right)
 \end{equation}
 
-In this study, we generated $10\,000$ sample distributions for each test, and varied the start phase of the distribution between 0 and 1 with a step size of XXXXX.
+In this study, we generated $10\,000$ sample distributions for each test, and varied the start phase of the distribution between 0 and 1 with a step size of 0.05.
 \item Take all $N$ flare occurrence times from the data and derive their phases $x_{i,obs}$ with $i \in [1,N]$. 
 \item Sort all $x_{i,obs}$ by phase in ascending order using the same start phase as the phase coverage distribution.
 \item Finally, compare the $A^2_{obs}$ value of the observed distribution of flare phases against the distribution of $A^2$ from above, and calculate the significance level ($p$-value) of the difference. 
@@ -259,7 +259,7 @@ The observed absence of flaring SPI signal can be explained in two ways -- obser
 
 A first physical reason could be the unknown magnetic field of AU Mic b. It is possible that AU Mic b has no magnetic field that can interact with the stellar magnetic field to trigger flares~\citep{lanza2018close-by}. Planetary magnetic fields in the Solar System are diverse and depend heavily on the internal structure and composition of the planet~\citep{stevenson2003planetary}, and no direct measurements of exoplanet magnetic fields exist today. Therefore, it is difficult to predict the presence, or even the strength of the AU Mic b's field based solely on mass and radius estimates.
 
-Second, AU Mic b's orbit could be outside the Alfv\'en zone of AU Mic, either constantly or temporarily. Although the star has a strong magnetic field, a high mass loss rate may pull the Alfven surface closer to the star~\citep{kavanagh2021}, so that no energy can be channeled from the planet to the star. This situation may change with evolving stellar cycle. \citet{ibanezbustos2019first} report a 5-year chromospheric activity cycle, but it is not clear how it affects mass loss.
+Second, AU Mic b's orbit could be outside the Alfv\'en zone of AU Mic, either constantly or temporarily. Although the star has a strong magnetic field, a high mass loss rate may pull the Alfven surface closer to the star~\citep{kavanagh2021}, so that no energy can be channeled from the planet to the star. This situation may change with evolving stellar cycle.~\citet{ibanezbustos2019first} report a 5-year chromospheric activity cycle, but it is not clear how it affects mass loss.
 
 Observational biases can also prevent the detection of flaring SPI. We discuss three possible biases here:
 
@@ -272,7 +272,7 @@ Finally, flaring activity could be elevated through flaring SPI, but manifest as
 
 \section{Conclusions}
 \label{sec:conclusions}
-Since SPI flares are morphologically identical to intrinsic stellar flares, a statistically significant orbital phase dependence of flaring behaviour is the closest we can currently get to detecting the effect directly. Using high cadence TESS observations of AU Mic, an early M dwarf with a close-in planet detected in 2020, we did not find any sign of flaring SPI.
+Since SPI flares are expected to be morphologically identical to intrinsic stellar flares, a statistically significant orbital phase dependence of flaring behaviour is the closest we can currently get to detecting the effect directly. Using high cadence TESS observations of AU Mic, an early M dwarf with a close-in planet detected in 2020, we did not find any sign of flaring SPI.
 
 The strength of the interaction is difficult to constrain in theory~\citep{strugarek2019}, and multiple physical models of flaring SPI co-exist~\citep{lanza2018close-by, saur2013}. Moreover, the orbit of AU Mic b is not yet synchronized with the stellar rotation period which may lead to tidal interaction. Although AU Mic shows the largest number of flares detected among all exoplanet hosts found by Kepler and TESS to date, we conclude that the vast majority of them are manifestations of intrinsic stellar activity. 
 
