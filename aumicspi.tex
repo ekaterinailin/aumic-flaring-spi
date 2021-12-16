@@ -122,7 +122,7 @@ AU Mic b is a Neptune-sized planet ($R_p = 4.3R_{Earth}$) that was first discove
 
 \citet{kavanagh2021} predict magnetic SPI with AU Mic b to be observable in the radio regime, a signal indicative of a phenomenon similar to the planet-moon interaction observed within the Jupiter-Io system~\citep{saur2013magnetic}. \citet{kavanagh2021} found that, based on reconstructions of AU Mic's magnetic field and mass loss rate, AU Mic b could reside in the sub-Alfv\'enic regime. If this is true, flaring star-planet interaction is also possible~\citep{lanza2018close-by}. AU Mic is the most actively flaring star among all currently known exoplanet hosts (Ilin et al. in prep.), implying that the footpoint of interaction may frequently pass regions where high magnetic tension has built up, and therefore trigger flares more easily than in other star-planet systems. 
 
-Two further reasons favor AU Mic in the search for flaring SPI: First, AU Mic b's orbit is not synchronized with the stellar rotation, so that confusion with rotational modulation of flaring activity is unlikely. Second, the system is observed equator-on, and AU Mic b orbits approximately within the equatorial plane of the star~\citep{martioli2020}. The footpoint of interaction would then move in and out view of the observer regardless of its location on the star.% at high latitudes on the stellar surface.%undefined
+Two further reasons favor AU Mic in the search for flaring SPI: First, AU Mic b's orbit is not synchronized with the stellar rotation, so that confusion with rotational modulation of intrinsic flaring activity is unlikely. Second, the system is observed equator-on. The footpoint of interaction would then move in and out view of the observer regardless of its location on the star.% at high latitudes on the stellar surface.%undefined
 
 In this work, we searched the TESS light curves of AU Mic for signs of flaring SPI. We present our light curve de-trending and flare finding method in Section \ref{sec:detrendfind}, and present the resulting flare catalog in Section \ref{sec:flarecatalog}. In Section \ref{sec:phases}, we show how we can combine flare samples from general time series measurements into a homogeneous data set, and apply this method to test whether flaring SPI signal is present in the TESS observations. The main result is shown in Table~\ref{tab:pvals}. We discuss our results and present our conclusions in Sections~\ref{sec:discussion} and \ref{sec:conclusions}.
 
@@ -224,7 +224,7 @@ P_{syn} = \left|\dfrac{1}{P_{rot}} - \dfrac{1}{P_{orb}}\right|^{-1}.
 \end{equation}
 
 
-In summary, if an inhomogeneous distribution of active regions on the stellar surface, or the interaction of AU Mic with the innermost planet in its orbit takes place that triggers flares in the observable regime, the flaring rates in phase with $P_{rot}$, $P_{orb}$ or $P_{syn}$  will deviate from a uniform distribution. Our null hypothesis is that no rotational, orbital, or synodic dependence is present. We test if we have to reject this hypothesis using a customized Anderson-Darling test~\citep[A-D test,][]{anderson1952, stephens1974edf}. The A-D test is more sensitive to the end of the distribution, i.e. phases near 0 or 1, than the more widely used Kolmogorov-Smirnov~\citep{kolmogorov1933sulla,smirnov1948table} test. Since we are agnostic about the phase at which the flaring rates will deviate from a uniform distribution, we choose the A-D test.
+In summary, if an inhomogeneous distribution of active regions on the stellar surface, or the interaction of AU Mic with the innermost planet in its orbit takes place that triggers flares in the observable regime, the flaring rates in phase with $P_{rot}$, $P_{orb}$ or $P_{syn}$  will deviate from a uniform distribution. Our null hypothesis is that no rotational, orbital, or synodic dependence is present. We test if we have to reject this hypothesis using a customized Anderson-Darling test~\citep[A-D test,][]{anderson1952, stephens1974edf}. The A-D test is more sensitive to the end of the distribution, i.e. phases near 0 or 1, than the more widely used Kolmogorov-Smirnov~\citep{kolmogorov1933sulla,smirnov1948table} test. Since the starting phase should ideally not affect the outcome of the test, we choose the A-D test.
 
 With this method we can analyse $N$ light curves that cover observing periods that do not overlap, and each of which has the same flare detection threshold throughout the observing time of the light curve. It is permissible, however, that this treshold varies from light curve to light curve, as is the case in our data set for AU Mic.
  
@@ -238,7 +238,7 @@ After having searched all light curves for flares, we calculate the deviation fr
 A^2 = - N -\displaystyle\sum_{i=1}^N \dfrac{2i-1}{N}\left(\log(\hat{\phi}(x_i))+\log(1-\hat{\phi}(x_{N+1-i}))\right)
 \end{equation}
 
-In this study, we generated $10\,000$ sample distributions for each test, and varied the start phase of the distribution between 0 and 1 with a step size of 0.05.
+In this study, we generated $10\,000$ sample distributions for each test. We also varied the start phase of the distribution between 0 and 1 with a step size of 0.05. While the A-D test is less sensitive to the start phase, we still observed a scatter in the outcomes of the tests, which we we take into account by calculating the median of all start phase varied test results.
 \item Take all $N$ flare occurrence times from the data and derive their phases $x_{i,obs}$ with $i \in [1,N]$. 
 \item Sort all $x_{i,obs}$ by phase in ascending order using the same start phase as the phase coverage distribution.
 \item Finally, compare the $A^2_{obs}$ value of the observed distribution of flare phases against the distribution of $A^2$ from above, and calculate the significance level ($p$-value) of the difference. 
@@ -274,11 +274,13 @@ Observational biases can also prevent the detection of flaring SPI. We discuss f
 First, the effect might simply be too weak. SPI flares may be triggered rarely, with only a handful or fewer of flares in our sample, which are not detectable with sufficient significance. This corresponds to fewer dots per area, i.e. flares per time, in Fig.~\ref{fig:illustrate_detrend}.
 %The upper bound on the energies of flares that can arise from the interaction in a handful of sun-like planet hosts is predicted to be well above the detection limit of flares we found in the TESS light curve of AU Mic lanza2018. 
 
-Second, we may be looking into the wrong flare energy regime. Flaring SPI may manifest at low energies $<10^{30}$ erg, i.e. below the detection threshold (no blue area in Fig.~\ref{fig:illustrate_detrend}). If, on the contrary, SPI flares are triggered at very high energies, they may again occur too rarely to be observed within the given monitoring time.
+Second, we may be looking into the wrong flare energy regime. Flaring SPI may manifest at low energies $<10^{30}$ erg, i.e. below the detection threshold (no blue area in Fig.~\ref{fig:illustrate_detrend}). If, on the contrary, SPI flares are triggered at very high energies, they may again occur too rarely to be observed within the given monitoring time. 
 
 Third, flaring activity could be elevated through flaring SPI, but manifest as excess flares across all longitudes. Efficient transport of the transferred energy in the stellar magnetosphere could even out an interaction that occurs at preferred orbital phases, and can therefore not be distinguished from intrinsically elevated flaring activity. This technically corresponds to a very large flaring region produced by the interaction, which would always be in view in Fig.~\ref{fig:illustrate_detrend}.
 
 Finally, flares triggered by the interaction might be frequent enough and have sufficiently high amplitudes to be detected if the flaring region was located close to the equator. Yet if the region was at high latitudes, flares would always appear foreshortened, and below the detection threshold.
+
+However, if the suggestive signal in the $ED>1$\,s flares~(Table~\ref{tab:pvals}) is true, we may be limited mostly by the first observational bias, i.e., insufficient observing time, because the periodically occurring flares are well above the detection threshold of TESS.
 
 \section{Conclusions}
 \label{sec:conclusions}
