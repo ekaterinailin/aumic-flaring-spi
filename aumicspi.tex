@@ -198,11 +198,11 @@ We confirmed 75 flares in Sector 1, and 114 flares in Sector 27~(see bottom pane
 \label{sec:phases}
 
 
-%\begin{figure*}
-%\includegraphics[width=\hsize]{figures/2021_09_01_AUMic_ADtests_meta.png} 
-%\caption{Anderson-Darling test results with varying phase offsets.}
-%\label{fig:adtest}
-%\end{figure*}
+\begin{figure}
+\includegraphics[width=\hsize]{figures/2021_12_15_AUMic_cumdist_orbit_fullsample_shift00.png} 
+\caption{Cumulative distribution of the full sample of flares (Sectors 1 and 27) with orbital phase. Phase 0 indicates the transit mid-time of AU Mic b. The underlying expected distribution is uniform, and is modulated by gaps in the phase coverage and detection thresholds of the two light curves.}
+\label{fig:cumdist}
+\end{figure}
 
 \begin{table}
 \caption{Median $p$ value of the custom A-D tests for the orbital, rotational and synodic periods of AU Mic (and AU Mic b) calculated using ten different start phases. Smallest $p$-value is boldfaced. There is no significant deviation from uniform flaring in time with either of the periods. $n$: number of flares in sample.}
@@ -231,7 +231,7 @@ With this method we can analyse $N$ light curves that cover observing periods th
 After having searched all light curves for flares, we calculate the deviation from a uniform flare rate distribution with orbital, rotational, and synodic phase each using a customized Anderson-Darling test in six steps:
 \begin{enumerate}
 \item Calculate observing time per phase using all valid data points in the de-trended light curves, taking into account the different observing cadences.
-\item Sample $N$ flare occurrence phases $x_i$ with $i \in [1,N]$ from the phase coverage distribution $\phi$ to get a distribution of flare phases, where $N$ is the total number of flares in the data. This step generates a list of flares that are uniformly distributed across all phases, modulated only by the phase coverage of the observations, and the detection thresholds of the light curves. 
+\item Sample $N$ flare occurrence phases $x_i$ with $i \in [1,N]$ from the phase coverage distribution $\phi$ to get a distribution of flare phases, where $N$ is the total number of flares in the data. This step generates a list of flares that are uniformly distributed across all phases, modulated only by the phase coverage of the observations, and the detection thresholds of the light curves~(Fig.~\ref{fig:cumdist}). 
 \item Repeat the previous step to obtain a large number of distributions, and calculate the A-D statistic $A^2$ for each of them using the cumulative form $\hat{\phi}(x_i)$ of the phase coverage distribution, where the $x_i$ are sorted in ascending order. 
 
 \begin{equation}
