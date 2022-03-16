@@ -109,7 +109,6 @@ Several studies of individual systems with close-in and eccentric Hot Jupiters r
 
 Recently, AU Mic, an M0-M1~\citep{pecaut2013,gaidos2014} pre-main sequence dwarf star has been shown to be a promising candidate for magnetic SPI with its innermost planet~\citep{kavanagh2021}. It is a member of the $\beta$ Pic young moving group, which is $16-29$ Myr old~\citep{malo2014,binks2014,mamajek2014,bell2015,binks2016,shkolnik2017,miretroig2020}. %Based on its lithium abundance, AU Mic could be a few Myr older than the average group member~\citep{malo2014}. 
 %Its rotation period of about $4.862$ d~\citep{plavchan2020, martioli2021} was determined from photometry obtained by the Transiting Exoplanet Survey Satellite~\citep[TESS,][]{ricker2014}.
-
 \textbf{Several papers reported system parameters of AU Mic based on TESS and CHEOPS~\citep{benz2021cheops} data~\citep{plavchan2020, martioli2021new, szabo2021changing, gilbert2021flares} which are mutually compatible within uncertainties. We accept the determinations by \citet{gilbert2021flares}, who based their analysis on the complete TESS photometry, as was done in our work.}
 
 AU Mic rotates at a \textbf{$4.85\pm0.03$ d period~\citep{gilbert2021flares}}; it shows strong solar-like differential rotation; possesses a strong, mostly poloidal large-scale magnetic field of $>400$ G; and several activity indicators vary in phase with the star's latitude-dependent rotation periods~\citep{klein2021}. Optical light curves obtained by the Transiting Exoplanet Survey Satellite~\citep[TESS,][]{ricker2014} confirm previous observations~\citep{katsova1999, robinson2001, redfield2002} that AU Mic is actively flaring~\citep{martioli2021new}.
@@ -123,19 +122,17 @@ Two further reasons favor AU Mic in the search for flaring SPI: First, AU Mic b'
 \textbf{When observational biases are taken into account, the absence of flaring SPI signal can be informative, too. It favors models with strong stellar winds that produce a small Alfv\'en zone. If the zone resides inside the planet's orbit no interaction can take place. A non-detection can also be evidence of a weak planetary magnetic field that reduces the strength of the interaction below the detection limit of flares in our data. If SPI does not appear to transfer the expected energy in flares, a further alternative is a steady energy transfer channel between planet and star. This could be expressed as, e.g., a chromospheric hot spot~(see Section~\ref{sec:discussion} for a detailed discussion).}  
 
 In this work, we searched the TESS light curves of AU Mic for signs of flaring SPI. We present our light curve de-trending and flare finding method in Section \ref{sec:detrendfind}, and the resulting flare catalog in Section \ref{sec:flarecatalog}. In Section \ref{sec:phases}, we show how we can combine flare samples from general time series measurements into a homogeneous data set, and apply this method to test whether flaring SPI signal is present in the TESS observations. The main result is shown in Table~\ref{tab:pvals}. We discuss our results and present our conclusions in Sections~\ref{sec:discussion} and \ref{sec:conclusions}.
-
-\section{TESS photometry}
-The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27$ d in each observing Sector. About $200\,000$ stars have been observed in 2 min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20 s cadence.
-
-AU Mic was observed in Sector 1 at a 2 min cadence, and in Sector 27 at a 20 s cadence. The light curves reveal strong rotational variability from starspots, vigorous flaring and transits of two planets, AU Mic b~\citep{plavchan2020,martioli2021new} and AU Mic c~\citep{plavchan2020,martioli2021new}.
+\section{Observations}
+\subsection{TESS photometry}
+The Transiting Exoplanet Survey Satellite~(TESS,~\citealt{ricker2014}) is an all-sky mission that began operations in 2018, and completed its first full sky scan in April 2020. It is still observing at the time of writing, collecting nearly continuous photometric times series in the 600-1000 nm band for $\sim 27$ d in each observing Sector. About $200\,000$ stars have been observed in 2 min cadence in the first two years of operations with about 20000 targets per Sector. Out of these, from Sector 27 on, 1000 targets were observed at even higher 20 s cadence. AU Mic was observed in Sector 1 at a 2 min cadence, and in Sector 27 at a 20 s cadence. The light curves reveal strong rotational variability from starspots, vigorous flaring and transits of two planets, AU Mic b~\citep{plavchan2020,martioli2021new} and AU Mic c~\citep{plavchan2020,martioli2021new}.
 % 20000 per sector does not add up, because of stars observed in multiple sectors, the 20000 and 1000 figures can be found here: https://tess.mit.edu/observations/target-lists/
 % extended TESS mission https://heasarc.gsfc.nasa.gov/docs/tess/extended.html
 
-\section{Light curve de-trending and flare finding}
+\subsection{Light curve de-trending and flare finding}
 \label{sec:detrendfind}
 Stellar light curves are time series of flux measurements that vary due to both astrophysical and instrumental effects. Flares are only one of many phenomena like spot variability, transits, eclipses, bursts and dips that can be detected in the data. Accurate automated flare detection algorithms are still challenging to design~\citep{vida2021}, not least due to this intrinsically heterogeneous morphology of light curves. We applied an iterative three-step algorithm to remove all but the variations caused by flares, and derived a realistic noise estimate (Section~\ref{sec:detrend}). We then used a $\sigma$-clipping procedure to mark flare candidates and calculate their properties~(Section~\ref{sec:flarefind}). The resulting flare catalog is presented in Section~\ref{sec:flarecatalog}.
 
-\subsection{De-trending}
+\subsubsection{De-trending}
 \label{sec:detrend}
 The light curves were de-trended in three steps, each of which removed variability on decreasing time scales while preserving the flare signal. Typical flare times range from a few minutes to a few hours, and rarely exceed one day in duration. Most stellar variability occurs on longer time scales, except for ultrafast rotational variability in some stars~\citep{ilin2021giant}. The following method was designed with a broad spectrum of Kepler~\citep{borucki2010} and TESS light curve types in mind. %Because AU Mic is extraordinarily active, we mark the adjustments made to accomodate that with comments in parentheses. 
 
@@ -151,7 +148,7 @@ Finally we estimate the noise in the de-trended light curve using a rolling stan
 
 The result for the light curve in Sector 1 is shown in Fig.~\ref{fig:illustrate_detrend}. This method is based on \texttt{AltaiPony}~\citep{ilin2021altaipony}, an open-source Python toolkit for flare-focused light curve analysis of Kepler and TESS data, and was inspired by the iterative approach in~\citet{davenport2016}, who searched the entire Kepler catalog for flares. We tested this method on a variety of synthetic and real light curves in the TESS and Kepler archives, so that it can be applied to a larger sample. We provide the de-trending module and an example script for the use of this method with TESS short cadence light curves in this project's Github repository\footnote{\url{https://github.com/ekaterinailin/flaring-spi/tree/master/notebooks}}.
 
-\subsection{Flare finding}
+\subsubsection{Flare finding}
 \label{sec:flarefind}
 We searched the de-trended light curves for flare candidates. For each light curve, we first find an iterative median, and then apply the threshold method introduced by~\citep{chang2015} that requires three consecutive positive outliers $3 \sigma$ above median for a candidate detection. To these data points we then add subsequent data points until one of them falls below a $2 \sigma$ above median threshold to avoid cutting off detectable parts of the flare decay phase. This series of data points is then flagged as a flare candidate. For each flare, the pipeline returns the flare start and end points, duration, amplitude, and equivalent duration ($ED$) with uncertainties. The $ED$ is the integrated flare flux $F_{flare}$ divided by the median quiescent flux $F_0$ of the star, integrated over the flare duration~\citep{gershberg1972}:
 \begin{equation}
@@ -173,7 +170,7 @@ We tested our flare-finding procedure on a range of both real and synthetic ligh
 \label{fig:illustrate_detrend}
 \end{figure*}
 
-\subsection{Flare catalog}
+\subsubsection{Flare catalog}
 \label{sec:flarecatalog}
 \begin{table}
 \caption{Confirmed flare events in the TESS light curves of AU Mic, sorted by orbital phase of AU Mic b. The remainder of the table is available in electronic form.}
